@@ -1,0 +1,80 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="2">
+		<h:panelGroup>
+			<h:outputLabel for="nombre" value="#{msgs.signup_form_name_label}" />
+		</h:panelGroup>
+		<h:panelGroup>
+			<p:inputText id="nombre" value="#{signup.nombre}" required="true"
+				requiredMessage="#{msgs.signup_form_required}"
+				validatorMessage="#{msgs.signup_form_name_validator}">
+				<f:validateLength maximum="20" />
+				<p:message for="nombre" />
+			</p:inputText>
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:outputLabel for="apellidos"
+				value="#{msgs.signup_form_apellidos_label}" />
+		</h:panelGroup>
+		<h:panelGroup>
+			<p:inputText id="apellidos" value="#{signup.apellidos}"
+				required="true"
+				requiredMessage="#{msgs.signup_form_apellidos_required}"
+				validatorMessage="#{msgs.signup_form_apellidos_validator}">
+				<f:validateLength maximum="40" />
+				<p:message for="apellidos" />
+			</p:inputText>
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:outputLabel for="email" value="#{msgs.signup_form_email_label}" />
+		</h:panelGroup>
+		<h:panelGroup>
+			<p:inputText id="email" value="#{signup.email}" required="true"
+				requiredMessage="#{msgs.signup_form_email_required}"
+				validatorMessage="#{msgs.signup_form_email_validator}">
+				<f:validateRegex pattern=".+@.+\.[a-z]+" />
+			</p:inputText>
+			<p:message for="email" />
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:outputLabel for="password"
+				value="#{msgs.signup_form_password_label}" />
+		</h:panelGroup>
+		<h:panelGroup>
+			<p:password id="password" value="#{signup.password}"
+				match="repeatpassword" required="true"
+				requiredMessage="#{msgs.signup_form_password_required}"
+				validatorMessage="#{msgs.signup_form_password_validator}">
+				<f:validateLength minimum="5" maximum="32" />
+			</p:password>
+			<p:message for="password" />
+
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:outputLabel for="repeatpassword"
+				value="#{msgs.signup_form_repeatpassword_label}" />
+		</h:panelGroup>
+		<h:panelGroup>
+			<p:password id="repeatpassword" required="true"
+				requiredMessage="#{msgs.signup_form_password_required}" />
+			<p:message for="repeatpassword" />
+		</h:panelGroup>
+	</p:panelGrid>
+	<br></br>
+	<p:selectBooleanCheckbox id="lopdCheckbox" required="true"
+		validatorMessage="#{msgs.lopdvalidator}">
+		<f:validator validatorId="CheckboxValidator" />
+	</p:selectBooleanCheckbox>
+	<p:message for="lopdCheckbox" />
+	<h:outputText value="#{msgs.avisolopd}" />
+	<br></br>
+</ui:composition>

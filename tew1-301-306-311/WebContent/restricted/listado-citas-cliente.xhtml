@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="/templates/template-cliente.xhtml">
+
+    <ui:define name="titulo">
+        #{msgs.tituloOperacionListado}
+    </ui:define>
+
+    <ui:define name="cuerpo">
+        <h:form>
+            <p:dataTable id="lisCitCli" var="vcita" value="#{control3.citas}"
+                border="1" rowKey="#{vcita.idPiso}"
+                emptyMessage="#{msgs.tablacitasVacia}">
+
+                <f:facet name="header">#{msgs.titulotablacitascliente}</f:facet>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaConfirma}</f:facet>
+                    <h:commandLink action="#{control3.confirmacitas (vcita)}"
+                        type="submit" value="#{msgs.enlaceConfirmar}"
+                        immediate="true">
+                    </h:commandLink>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaDireccion}</f:facet>#{vcita.direccion}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdCli}</f:facet>#{vcita.idCliente}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{vcita.fechaHoraCitaStr}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{vcita.estadoStr}</p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="pie">
+        <ui:include src="/snippets/pie-casa.xhtml" />
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15728637326755" configfile="/tew1-301-306-311/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="804" y="936" id="pf15728638923966" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15728638923968 pf157286427280136 pf157286427280137 pf157286427280138 pf157286427280139 pf157286427280140 pf157286483502143 pf157287726292445 pf157287726292446 pf157287726292447 pf157287726292448 pf157287726292449" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" x="711" y="636" id="pf157286389239615" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf157286389239616 pf157286389239617" inlinks="pf157286389239616 pf157287726292449" path="/signup.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="204" y="1020" id="pf157286389239618" referenceLink="//@navigationRule.2/@navigationCase.2/@toViewId|" outlinks="pf157286389239619 pf157286389239620 pf157286389239621" inlinks="pf15728638923968 pf157286389239621 pf157286427280140" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cliente/indexCliente.xhtml" x="408" y="711" id="pf157286389239733" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf157286389239619 pf157286389239617 pf157286427280136 pf157287726292445 pf157287726292446" path="/cliente/indexCliente.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="agente/indexAgente.xhtml" x="504" y="1080" id="pf157286389239734" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf157286389239620 pf157286427280139 pf157287726292447" path="/agente/indexAgente.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cliente/listado-cliente.xhtml" x="1188" y="684" id="pf157286427280241" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf157286427280137" path="/cliente/listado-cliente.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="agente/listado-agente.xhtml" x="1104" y="1080" id="pf157286427280242" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf157286427280138" path="/agente/listado-agente.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="agente/altaForm.xhtml" x="804" y="1116" id="pf157286483502144" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf157286483502143" path="/agente/altaForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="936" y="609" id="pf157287726292550" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf157287726292448" path="/error.xhtml"/>
+  <links id="pf15728638923968" target="pf157286389239618" source="pf15728638923966" outcome="login"/>
+  <links id="pf157286389239619" target="pf157286389239733" source="pf157286389239618" outcome="cliente" fromaction="#{login.verify}"/>
+  <links id="pf157286389239620" target="pf157286389239734" source="pf157286389239618" outcome="agente" fromaction="#{login.verify}"/>
+  <links id="pf157286389239617" target="pf157286389239733" source="pf157286389239615" outcome="success" fromaction="#{signup.registrarse}"/>
+  <links id="pf157286427280136" target="pf157286389239733" source="pf15728638923966" outcome="success" fromaction="#{signup.registrarse}"/>
+  <links id="pf157286427280137" target="pf157286427280241" source="pf15728638923966" outcome="exito" fromaction="#{control.listadocliente}"/>
+  <links id="pf157286427280138" target="pf157286427280242" source="pf15728638923966" outcome="exito" fromaction="#{control.listadoagente}"/>
+  <links id="pf157286427280139" target="pf157286389239734" source="pf15728638923966" outcome="casa-agente"/>
+  <links id="pf157286427280140" target="pf157286389239618" source="pf15728638923966" outcome="logout" redirect="true"/>
+  <links id="pf157286483502143" target="pf157286483502144" source="pf15728638923966" outcome="alta"/>
+  <links id="pf157287726292445" target="pf157286389239733" source="pf15728638923966" outcome="casa-cliente"/>
+  <links id="pf157287726292446" target="pf157286389239733" source="pf15728638923966" outcome="guardavisitas"/>
+  <links id="pf157287726292447" target="pf157286389239734" source="pf15728638923966" outcome="exito" fromaction="#{control.salva}"/>
+  <links id="pf157286389239616" target="pf157286389239615" source="pf157286389239615" outcome="signup" fromaction="#{signup.registrarse}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf157286389239621" target="pf157286389239618" source="pf157286389239618" outcome="login" fromaction="#{login.verify}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf157287726292448" target="pf157287726292550" source="pf15728638923966" outcome="error"/>
+  <links id="pf157287726292449" target="pf157286389239615" source="pf15728638923966" outcome="registrarse"/>
+</pageflow:Pageflow>

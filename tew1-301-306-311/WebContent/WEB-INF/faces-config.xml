@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+    <application>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+    </application>
+
+    <managed-bean>
+        <managed-bean-name>settings</managed-bean-name>
+        <managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>control3</managed-bean-name>
+        <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>control</managed-bean-name>
+        <managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registrarse</from-outcome>
+            <to-view-id>/signup.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>duplicado</from-outcome>
+            <to-view-id>/agente/duplicarform.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alta</from-outcome>
+            <to-view-id>/agente/altaForm.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>casa-cliente</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>casa-agente</from-outcome>
+            <to-view-id>/agente/indexAgente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>guardavisitas</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+<!--         <navigation-case>
+            <from-action>#{control.duplicarform}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/agente/altaForm2.xhtml</to-view-id>
+        </navigation-case> -->
+        <navigation-case>
+            <from-action>#{control.listadoagente}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/agente/listado-agente.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{control.editar}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/agente/listado-agente.xhtml</to-view-id>
+        </navigation-case>
+                        
+        <navigation-case>
+            <from-action>#{control.salva}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/agente/listado-agente.xhtml</to-view-id>
+        </navigation-case>
+
+<!-- Javier -->
+        <navigation-case>
+            <from-action>#{control3.listadocitas}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/cliente/listado-citas-cliente.xhtml</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/signup.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/signup.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{login.verify}</from-action>
+            <from-outcome>cliente</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{login.verify}</from-action>
+            <from-outcome>agente</from-outcome>
+            <to-view-id>/agente/indexAgente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{login.verify}</from-action>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+</faces-config>

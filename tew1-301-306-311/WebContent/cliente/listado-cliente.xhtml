@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template-cliente.xhtml">
+
+	<ui:define name="titulo">
+    #{msgs.tituloOperacionListado}
+  	</ui:define>
+
+	<ui:define name="cuerpo">
+		<h:form>
+            
+			<p:dataTable id="c" var="vpiso"
+				value="#{control.pisos}" border="1" rowKey="#{vpiso.id}"
+				emptyMessage="#{msgs.tablaVacia}">
+				
+				<f:facet name="header">#{msgs.titulotablapisos}</f:facet>
+
+				<p:column>
+					<f:facet name="header">#{msgs.tablaID}</f:facet>#{vpiso.id}
+                </p:column>
+
+				<p:column name="header" headerText="#{msgs.tablaPreciomin}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
+            		<h:outputText value="#{vpiso.precio}">
+                		<f:convertNumber currencySymbol="€" type="currency"/>
+            		</h:outputText>
+       	 		</p:column>
+               	
+               	<p:column name="header" headerText="#{msgs.tablaPreciomax}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice2}">
+            		<h:outputText value="#{vpiso.precio}">
+                		<f:convertNumber currencySymbol="€" type="currency"/>
+            		</h:outputText>
+       	 		</p:column>
+
+				<p:column>
+					<f:facet name="header">#{msgs.tablaDireccion}</f:facet>#{vpiso.direccion}
+                </p:column>
+
+				<p:column filterBy="#{vpiso.ciudad}" filterMatchMode="contains">
+					<f:facet name="header">#{msgs.tablaCiudad}</f:facet>#{vpiso.ciudad}
+                </p:column>
+
+				<p:column>
+					<f:facet name="header">#{msgs.tablaAno}</f:facet>#{vpiso.ano}
+                </p:column>
+
+				<p:column >
+					<f:facet name="header">#{msgs.tablaEstado}</f:facet>#{vpiso.sestado}
+                </p:column>
+         
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+
+
+
+	<ui:define name="pie">   
+		<ui:include src="/snippets/pie-cliente.xhtml" />
+	</ui:define>
+</ui:composition>
