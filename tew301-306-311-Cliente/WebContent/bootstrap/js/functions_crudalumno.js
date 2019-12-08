@@ -9,12 +9,12 @@
 //Clase que contiene el Modelo de la aplicación.
 function Model() {
 	// Lista de alumnos.
-	this.tbAlumnos = null;
+	this.tbPisos = null;
 };
 
 // Carga los datos del servicio sobreescribiendo el dato this.tbAlumnos.
 this.load = function() {
-	this.tbAlumnos = AlumnosServicesRs.getAlumnos();
+	this.tbPisos = SimplePisosService.getPisos();
 }
 // Llamamos al servicio de alta de alumno
 this.add = function(alumno) {
@@ -26,6 +26,7 @@ this.add = function(alumno) {
 	// Recargamos la lista de alumnos.
 	this.load();
 }
+
 // Actualización de un alumno existente: PENDIENTE DE IMPLEMENTAR
 this.edit = function(alumno) {
 	// Llamamos al servicio de editar alumno
