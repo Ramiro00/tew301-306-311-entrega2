@@ -76,70 +76,6 @@ public class PisoJdbcDao implements PisoDao {
 		return pisos;
 	}
 
-	@Override
-	public List<Piso> getPisos(String login) {
-
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Connection con = null;
-
-		List<Piso> pisos = new ArrayList<Piso>();
-
-		try {
-
-			String SQL_DRV = "org.hsqldb.jdbcDriver";
-			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-			Class.forName(SQL_DRV);
-			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from PISOS");
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Piso piso = new Piso();
-				piso.setId(rs.getInt("ID"));
-				piso.setIdagente(rs.getInt("IDAgente"));
-				piso.setPrecio(rs.getInt("Precio"));
-				piso.setDireccion(rs.getString("Direccion"));
-				piso.setCiudad(rs.getString("Ciudad"));
-				piso.setAno(rs.getInt("Ano"));
-				piso.setEstado(rs.getInt("Estado"));
-				piso.setVisita(pisovisitado(rs.getInt("ID"), login));
-				pisos.add(piso);
-			}
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Driver not found", e);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-		}
-
-		return pisos;
-
-	}
 
 	private boolean pisovisitado(int idpiso, String login) {
 		PreparedStatement ps = null;
@@ -409,7 +345,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public void delete(int id, String login) throws NotPersistedException {
+	public void delete(int id) throws NotPersistedException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		int rows = 0;
@@ -488,7 +424,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public void deletevisitas(int id, String login) throws NotPersistedException {
+	public void deletevisitas(int id) throws NotPersistedException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		int rows = 0;

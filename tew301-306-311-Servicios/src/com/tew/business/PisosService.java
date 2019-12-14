@@ -27,12 +27,10 @@ public interface PisosService {
 
 	void updatePiso(Piso p) throws EntityNotFoundException;
 
-	void deletePiso(int id, String login) throws EntityNotFoundException;
-
-	List<Piso> getPisos(String login);
+	void deletePiso(int id) throws EntityNotFoundException;
 
 	void savePiso(Piso p, String login);
 
-	void duplicarpiso(Piso piso) throws EntityNotFoundException;
+
 
 }

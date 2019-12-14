@@ -20,8 +20,8 @@ public class SimplePisosService implements PisosService {
 	}
 
 	@Override
-	public void deletePiso(int id, String login) throws EntityNotFoundException {
-		new PisosBaja().delete(id, login);
+	public void deletePiso(int id) throws EntityNotFoundException {
+		new PisosBaja().delete(id);
 	}
 
 	@Override
@@ -29,19 +29,12 @@ public class SimplePisosService implements PisosService {
 		return new PisosBuscar().find(id);
 	}
 
-	@Override
-	public List<Piso> getPisos(String login) {
-		return new PisosListado().getPisos(login);
-	}
+
 
 	@Override
 	public void savePiso(Piso p, String login) {
 		new PisosAlta().save(p, login);
 	}
 
-	@Override
-	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
-		new PisosDuplicar().duplicar(piso);		
-	}
 
 }

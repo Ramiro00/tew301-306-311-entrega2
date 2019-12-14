@@ -12,22 +12,22 @@ public interface PisosServicesRs extends PisosService {
 	
 	@GET 
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Piso> getAlumnos();
+	public List<Piso> getPisos() throws Exception;
 	
 	@GET
 	@Path("{id}") 
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Piso findById(@PathParam("id") Long id) throws EntityNotFoundException;
+	Piso findById(@PathParam("id") int id) throws EntityNotFoundException;
 	
 	@DELETE
 	@Path("{id}")
-	void deletePiso(@PathParam("id") Long id) throws EntityNotFoundException;
+	void deletePiso(@PathParam("id") int id) throws EntityNotFoundException;
 	
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void saveAlumno(Piso alumno) throws EntityAlreadyExistsException;
+	void savePiso(Piso piso) throws EntityAlreadyExistsException;
 	
 	@POST 
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void updateAlumno(Piso alumno) throws EntityNotFoundException;
+	void updatePiso(Piso piso) throws EntityNotFoundException;
 }

@@ -7,19 +7,17 @@ import com.tew.persistence.exception.NotPersistedException;
 
 public interface PisoDao {
 
-	List<Piso> getPisos();
-
 	void update(Piso p) throws NotPersistedException;
 
 	Piso findById(int id);
 
-	List<Piso> getPisos(String login);
+	List<Piso> getPisos();
 
 	void save(Piso p, String login) throws AlreadyPersistedException;
 
-	void delete(int id, String login) throws NotPersistedException;
+	void delete(int id) throws NotPersistedException;
 
-	void deletevisitas(int id, String login) throws NotPersistedException;
+	void deletevisitas(int id) throws NotPersistedException;
 
 	void deleteAll();
 

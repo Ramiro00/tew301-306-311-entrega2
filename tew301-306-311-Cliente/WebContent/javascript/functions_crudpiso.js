@@ -2,27 +2,27 @@
 //Clase que contiene el Modelo de la aplicación.
 function Model(){
 	//Lista de alumnos.
-	this.tbAlumnos = null;
+	this.tbPisos = null;
 
 //	Carga los datos del servicio sobreescribiendo el dato this.tbAlumnos.
 	this.load = function() {
-		this.tbAlumnos = AlumnosServicesRs.getAlumnos();
+		this.tbPisos = PisosServicesRs.getPisos();
 	}
 //	Llamamos al servicio de alta de alumno
-	this.add = function(alumno) {
+	this.add = function(piso) {
 //		Llamamos al servicio de alta de alumno
-		AlumnosServicesRs.saveAlumno({
-			$entity : alumno,
+		PisosServicesRs.savePiso({
+			$entity : piso,
 			$contentType : "application/json"
 		});
 //		Recargamos la lista de alumnos.
 		this.load();
 	}
 //	Actualización de un alumno existente
-	this.edit = function(alumno) {
+	this.edit = function(piso) {
 //		Llamamos al servicio de edicion de alumno
-		AlumnosServicesRs.updateAlumno({
-			$entity : alumno,
+		PisosServicesRs.updatePiso({
+			$entity : piso,
 			$contentType : "application/json"	
 		});
 //		Recargamos la lista de alumnos.
@@ -30,23 +30,23 @@ function Model(){
 	} 
 
 //	Eliminación un alumno existente
-	this.remove = function(id_alumno) {
+	this.remove = function(id_piso) {
 //		Llamamos al servicio de borrado de alumno
-		AlumnosServicesRs.deleteAlumno({
-			id : id_alumno
+		PisosServicesRs.deletePiso({
+			id : id_piso
 		});
 //		Recargamos la lista de alumnos.
 		this.load();
 	}
 
-	this.find = function(id_alumno) {
-		function checkAlumno(obj) {
-			return obj.id == id_alumno;
+	this.find = function(id_piso) {
+		function checkPiso(obj) {
+			return obj.id == id_piso;
 		}
 //		Buscamos los datos del alumno cuyo id_alumno sea el mismo que el
 //		seleccionado
-		var alumno = this.tbAlumnos.find(checkAlumno);
-		return alumno;
+		var piso = this.tbPisos.find(checkPiso);
+		return piso;
 	} 
 };
 
@@ -54,51 +54,53 @@ function View(){
 	this.list = function(lista) {
 		$("#tblList").html("");
 		$("#tblList").html( "<thead>" + "<tr>" + "<th></th>"
-				+ "<th>ID</th>" + "<th>IDUser</th>" + "<th>Nombre</th>"
-				+ "<th>Apellidos</th>" + "<th>Email</th>" + "</tr>"
+				+ "<th>ID</th>" + "<th>IDAgent</th>" + "<th>Direccion</th>"
+				+ "<th>Ciudad</th>" + "<th>Precio</th>" + "<th>Estado</th>" + "</tr>"
 				+ "</thead>" + "<tbody>" + "</tbody>");
 		for ( var i in lista) {
-			var alumno = lista[i];
+			var piso = lista[i];
 			$("#tblList tbody").append("<tr> <td>"
 					+ "<img src='icons/edit.png' class='btnEdit'/>"
 					+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
-					+ "<td>" + alumno.id + "</td>" + "<td>" + alumno.iduser + "</td>"
-					+ "<td>" + alumno.nombre + "</td>" + "<td>" + alumno.apellidos + "</td>"
-					+ "<td>" + alumno.email + "</td></tr>");
+					+ "<td>" + piso.id + "</td>" + "<td>" + piso.idagente + "</td>"
+					+ "<td>" + piso.direccion + "</td>" + "<td>" + piso.ciudad + "</td>"
+					+ "<td>" + piso.precio + "<td>" + piso.estado + "</td>" + "</td></tr>");
 		}
 	}
 
-	this.loadAlumnoFromForm = function() {
+	this.loadPisoFromForm = function() {
 		// Cogemos el alumno nuevo del formulario.
-		var alumno = {
+		var piso = {
 				id : $("#id").val(),
-				iduser : $("#iduser").val(),
-				nombre : $("#nombre").val(),
-				apellidos : $("#apellidos").val(),
-				email : $("#email").val()
+				idagente : $("#idagente").val(),
+				direccion : $("#direccion").val(),
+				ciudad : $("#ciudad").val(),
+				precio : $("#precio").val(),
+				estado : $("#estado").val()
 		};
-		return alumno;
+		return piso;
 	}
 
-	this.loadAlumnoInForm = function(alumno) {
+	this.loadPisoInForm = function(piso) {
 		// Pintamos los datos alumnos sobre el formularios de alta/edición
-		$("#id").val(alumno.id);
-		$("#iduser").val(alumno.iduser);
-		$("#nombre").val(alumno.nombre);
-		$("#apellidos").val(alumno.apellidos);
-		$("#email").val(alumno.email);
-		$("#iduser").focus(); // Ponemos el foco en el campo Nombre.
+		$("#id").val(piso.id);
+		$("#idagente").val(piso.idagent);
+		$("#direccion").val(piso.direccion);
+		$("#ciudad").val(piso.ciudad);
+		$("#precio").val(piso.precio);
+		$("#estado").val(piso.estado);
+		$("#id").focus(); // Ponemos el foco en el campo Nombre.
 	} 
 
-	This.getIdAlumno = function(celda) {
+	This.getIdPiso = function(celda) {
 		// Accedemos a la fila que está por encima de esta celda
 		// (closest('tr'))y despues obtenemos todas las celdas de esa fila
 		// (find('tr')) y
 		// nos quedamos con la segunda (get(1)) que es la contiene el "id" del
 		// alumno.
 
-		var id_alumno = parseInt(celda.closest('tr').find('td').get(1).innerHTML);
-		return id_alumno;
+		var id_piso = parseInt(celda.closest('tr').find('td').get(1).innerHTML);
+		return id_piso;
 	} 
 };
 
@@ -116,10 +118,10 @@ function Controller(varmodel, varview) {
 		// Cargamos la lista de alumnos del servicio
 		this.model.load();
 		// Repintamos la lista de alumnos.
-		this.view.list(this.model.tbAlumnos);
+		this.view.list(this.model.tbPisos);
 		// MANEJADORES DE EVENTOS
 		// Manejador del botón submit del formulario de Alta y Edición
-		$("#frmCRUDAlumnos").bind("submit",
+		$("#frmCRUDPisos").bind("submit",
 				// Método que gestiona el evento de clickar el botón submit del
 				// formulario
 				function(event) {
@@ -127,16 +129,16 @@ function Controller(varmodel, varview) {
 			// método de 
 			// edición
 			// sino se invoca al método de alta.
-			alumno = that.view.loadAlumnoFromForm();
+			piso = that.view.loadPisoFromForm();
 			if ($("#id").val() == "") {
-				that.model.add(alumno);
+				that.model.add(piso);
 			} else {
-				that.model.edit(alumno);
+				that.model.edit(piso);
 			}
 			// Volvemos a listar los alumnos restantes para que aparezca el
 			// nuevo
 			// alumnos o el editado
-			that.view.list(that.model.tbAlumnos);
+			that.view.list(that.model.tbPisos);
 		}); 
 	}
 
@@ -146,12 +148,12 @@ function Controller(varmodel, varview) {
 			function(event) {
 		// Obtenemos el id del alumno seleccionado mediante el icono de
 		// edición
-		var id_alumno = that.view.getIdAlumno($(this));
+		var id_piso = that.view.getIdPiso($(this));
 		// Obtenemos el alumno con el id_alumno
-		var alumno = that.model.find(id_alumno);
+		var piso = that.model.find(id_piso);
 		// Cargamos el formulario con los datos del alumno seleccionado para
 		// editar
-		that.view.loadAlumnoInForm(alumno);
+		that.view.loadPisoInForm(piso);
 	}); 
 }; 
 

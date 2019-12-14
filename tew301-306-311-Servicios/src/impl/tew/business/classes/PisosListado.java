@@ -28,6 +28,6 @@ public class PisosListado {
 
 	public List<Piso> getPisos(String login) {
 		PisoDao dao = Factories.persistence.createPisoDao();
-		return dao.getPisos(login);
+		return dao.getPisos();
 	}
 }
