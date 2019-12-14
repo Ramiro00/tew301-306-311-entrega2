@@ -142,7 +142,7 @@ public class BeanPisos implements Serializable {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
-			piso = (BeanPiso) service.findById(piso.getId());
+			piso = (BeanPiso) service.findById(Long.valueOf(piso.getId()));
 			return "exito";
 
 		} catch (Exception e) {

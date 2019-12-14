@@ -25,7 +25,7 @@ public class SimplePisosService implements PisosService {
 	}
 
 	@Override
-	public Piso findById(int id) throws EntityNotFoundException {
+	public Piso findById(Long id) throws EntityNotFoundException {
 		return new PisosBuscar().find(id);
 	}
 

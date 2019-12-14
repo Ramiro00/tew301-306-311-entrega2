@@ -1,52 +1,52 @@
 
 //Clase que contiene el Modelo de la aplicación.
 function Model(){
-	//Lista de alumnos.
-	this.tbAlumnos = null;
+	//Lista de pisos.
+	this.tbPisos = null;
 
-//	Carga los datos del servicio sobreescribiendo el dato this.tbAlumnos.
+//	Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
 	this.load = function() {
-		this.tbAlumnos = AlumnosServicesRs.getAlumnos();
+		this.tbPisos = PisosServicesRs.getPisos();
 	}
-//	Llamamos al servicio de alta de alumno
-	this.add = function(alumno) {
-//		Llamamos al servicio de alta de alumno
-		AlumnosServicesRs.saveAlumno({
-			$entity : alumno,
+//	Llamamos al servicio de alta de piso
+	this.add = function(piso) {
+//		Llamamos al servicio de alta de piso
+		PisosServicesRs.savePiso({
+			$entity : piso,
 			$contentType : "application/json"
 		});
-//		Recargamos la lista de alumnos.
+//		Recargamos la lista de pisos.
 		this.load();
 	}
-//	Actualización de un alumno existente
-	this.edit = function(alumno) {
-//		Llamamos al servicio de edicion de alumno
-		AlumnosServicesRs.updateAlumno({
-			$entity : alumno,
+//	Actualización de un piso existente
+	this.edit = function(piso) {
+//		Llamamos al servicio de edicion de piso
+		PisosServicesRs.updatePiso({
+			$entity : piso,
 			$contentType : "application/json"	
 		});
-//		Recargamos la lista de alumnos.
+//		Recargamos la lista de pisos.
 		this.load();
 	} 
 
-//	Eliminación un alumno existente
-	this.remove = function(id_alumno) {
-//		Llamamos al servicio de borrado de alumno
-		AlumnosServicesRs.deleteAlumno({
-			id : id_alumno
+//	Eliminación un piso existente
+	this.remove = function(id_piso) {
+//		Llamamos al servicio de borrado de piso
+		PisosServicesRs.deletepiso({
+			id : id_piso
 		});
-//		Recargamos la lista de alumnos.
+//		Recargamos la lista de pisos.
 		this.load();
 	}
 
-	this.find = function(id_alumno) {
-		function checkAlumno(obj) {
-			return obj.id == id_alumno;
+	this.find = function(id_piso) {
+		function checkpiso(obj) {
+			return obj.id == id_piso;
 		}
-//		Buscamos los datos del alumno cuyo id_alumno sea el mismo que el
+//		Buscamos los datos del piso cuyo id_piso sea el mismo que el
 //		seleccionado
-		var alumno = this.tbAlumnos.find(checkAlumno);
-		return alumno;
+		var piso = this.tbPisos.find(checkpiso);
+		return piso;
 	} 
 };
 
@@ -54,51 +54,56 @@ function View(){
 	this.list = function(lista) {
 		$("#tblList").html("");
 		$("#tblList").html( "<thead>" + "<tr>" + "<th></th>"
-				+ "<th>ID</th>" + "<th>IDUser</th>" + "<th>Nombre</th>"
-				+ "<th>Apellidos</th>" + "<th>Email</th>" + "</tr>"
+				+ "<th>ID</th>" + "<th>IDAgente</th>" + "<th>Precio</th>"
+				+ "<th>Direccion</th>" + "<th>Cuidad</th>" + "<th>ano</th>" +
+				"<th>ano</th>" + "</tr>" +
 				+ "</thead>" + "<tbody>" + "</tbody>");
 		for ( var i in lista) {
-			var alumno = lista[i];
+			var piso = lista[i];
 			$("#tblList tbody").append("<tr> <td>"
 					+ "<img src='icons/edit.png' class='btnEdit'/>"
 					+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
-					+ "<td>" + alumno.id + "</td>" + "<td>" + alumno.iduser + "</td>"
-					+ "<td>" + alumno.nombre + "</td>" + "<td>" + alumno.apellidos + "</td>"
-					+ "<td>" + alumno.email + "</td></tr>");
+					+ "<td>" + piso.id + "</td>" + "<td>" + piso.idagente + "</td>"
+					+ "<td>" + piso.precio + "</td>" + "<td>" + piso.direccion + "</td>"
+					+ "<td>" + piso.ano + "<td>" + piso.estado +"</td></tr>");
 		}
 	}
 
-	this.loadAlumnoFromForm = function() {
-		// Cogemos el alumno nuevo del formulario.
-		var alumno = {
-				id : $("#id").val(),
-				iduser : $("#iduser").val(),
-				nombre : $("#nombre").val(),
-				apellidos : $("#apellidos").val(),
-				email : $("#email").val()
+	this.loadpisoFromForm = function() {
+		// Cogemos el piso nuevo del formulario.
+		var piso = {
+			id 		: $("#id").val(),
+			idagente: $("#idagente").val(),
+			precio 	: $("#precio").val(),
+			direccion : $("#direccion").val(),
+			direccion 	: $("#ciudad").val(),
+			ano 	: $("#ano").val(),
+			estado 	: $("#estado").val()
 		};
-		return alumno;
+		return piso;
 	}
 
-	this.loadAlumnoInForm = function(alumno) {
-		// Pintamos los datos alumnos sobre el formularios de alta/edición
-		$("#id").val(alumno.id);
-		$("#iduser").val(alumno.iduser);
-		$("#nombre").val(alumno.nombre);
-		$("#apellidos").val(alumno.apellidos);
-		$("#email").val(alumno.email);
-		$("#iduser").focus(); // Ponemos el foco en el campo Nombre.
+	this.loadpisoInForm = function(piso) {
+		// Pintamos los datos pisos sobre el formularios de alta/edición
+		$("#id").val(piso.id);
+		$("#idagente").val(piso.idagente);
+		$("#precio").val(piso.precio);
+		$("#direccion").val(piso.direccion);
+		$("#ciudad").val(piso.ciudad);
+		$("#ano").val(piso.ano);
+		$("#estado").val(piso.estado);
+		$("#id").focus(); // Ponemos el foco en el campo Nombre.
 	} 
 
-	This.getIdAlumno = function(celda) {
+	This.getIdpiso = function(celda) {
 		// Accedemos a la fila que está por encima de esta celda
 		// (closest('tr'))y despues obtenemos todas las celdas de esa fila
 		// (find('tr')) y
 		// nos quedamos con la segunda (get(1)) que es la contiene el "id" del
-		// alumno.
+		// piso.
 
-		var id_alumno = parseInt(celda.closest('tr').find('td').get(1).innerHTML);
-		return id_alumno;
+		var id_piso = parseInt(celda.closest('tr').find('td').get(1).innerHTML);
+		return id_piso;
 	} 
 };
 
@@ -113,45 +118,45 @@ function Controller(varmodel, varview) {
 	this.view = varview;
 	// Funcion de inicialización para cargar modelo y vista, definición de manejadores
 	this.init = function() {
-		// Cargamos la lista de alumnos del servicio
+		// Cargamos la lista de pisos del servicio
 		this.model.load();
-		// Repintamos la lista de alumnos.
-		this.view.list(this.model.tbAlumnos);
+		// Repintamos la lista de pisos.
+		this.view.list(this.model.tbPisos);
 		// MANEJADORES DE EVENTOS
 		// Manejador del botón submit del formulario de Alta y Edición
-		$("#frmCRUDAlumnos").bind("submit",
+		$("#frmCRUDpisos").bind("submit",
 				// Método que gestiona el evento de clickar el botón submit del
 				// formulario
 				function(event) {
-			// Si el alumno cargado en el formulario tiene ID se invoca al
+			// Si el piso cargado en el formulario tiene ID se invoca al
 			// método de 
 			// edición
 			// sino se invoca al método de alta.
-			alumno = that.view.loadAlumnoFromForm();
+			piso = that.view.loadpisoFromForm();
 			if ($("#id").val() == "") {
-				that.model.add(alumno);
+				that.model.add(piso);
 			} else {
-				that.model.edit(alumno);
+				that.model.edit(piso);
 			}
-			// Volvemos a listar los alumnos restantes para que aparezca el
+			// Volvemos a listar los pisos restantes para que aparezca el
 			// nuevo
-			// alumnos o el editado
-			that.view.list(that.model.tbAlumnos);
+			// pisos o el editado
+			that.view.list(that.model.tbPisos);
 		}); 
 	}
 
-	// Manejador del enlace de edición de un alumno en la tabla
+	// Manejador del enlace de edición de un piso en la tabla
 	$("#tblList").on("click", ".btnEdit",
 			// Método que gestiona el evento de clickar en el evento
 			function(event) {
-		// Obtenemos el id del alumno seleccionado mediante el icono de
+		// Obtenemos el id del piso seleccionado mediante el icono de
 		// edición
-		var id_alumno = that.view.getIdAlumno($(this));
-		// Obtenemos el alumno con el id_alumno
-		var alumno = that.model.find(id_alumno);
-		// Cargamos el formulario con los datos del alumno seleccionado para
+		var id_piso = that.view.getIdpiso($(this));
+		// Obtenemos el piso con el id_piso
+		var piso = that.model.find(id_piso);
+		// Cargamos el formulario con los datos del piso seleccionado para
 		// editar
-		that.view.loadAlumnoInForm(alumno);
+		that.view.loadpisoInForm(piso);
 	}); 
 }; 
 

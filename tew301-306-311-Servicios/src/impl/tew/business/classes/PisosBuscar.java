@@ -7,7 +7,7 @@ import com.tew.persistence.PisoDao;
 
 public class PisosBuscar {
 
-	public Piso find(int id) throws EntityNotFoundException {
+	public Piso find(long id) throws EntityNotFoundException {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		Piso a = dao.findById(id);
 		if (a == null) {

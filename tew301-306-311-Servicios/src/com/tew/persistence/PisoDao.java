@@ -12,6 +12,8 @@ public interface PisoDao {
 	void update(Piso p) throws NotPersistedException;
 
 	Piso findById(int id);
+	
+	Piso findById(Long id);
 
 	List<Piso> getPisos(String login);
 

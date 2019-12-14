@@ -529,7 +529,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public Piso findById(int id) {
+	public Piso findById(Long id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = null;
@@ -650,4 +650,9 @@ public class PisoJdbcDao implements PisoDao {
 		return piso;
 	}
 
+	@Override
+	public Piso findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -23,7 +23,9 @@ public interface PisosService {
 
 	List<Piso> getPisos() throws Exception;
 
-	Piso findById(int id) throws EntityNotFoundException;
+	//Piso findById(int id) throws EntityNotFoundException;
+	
+	Piso findById(Long id) throws EntityNotFoundException;
 
 	void updatePiso(Piso p) throws EntityNotFoundException;
 
