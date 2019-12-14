@@ -35,7 +35,7 @@ public class CitasListado {
 
 	public List<Piso> getPisos(String id) {
 		PisoDao dao = Factories.persistence.createPisoDao();
-		return dao.getPisos(id);
+		return dao.getPisos();
 	}
 
 }

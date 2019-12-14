@@ -8,15 +8,14 @@ import com.tew.persistence.exception.NotPersistedException;
 public interface PisoDao {
 
 	List<Piso> getPisos();
+	
+	void save(Piso p) throws AlreadyPersistedException;
+
+	void delete(long id) throws NotPersistedException;
 
 	void update(Piso p) throws NotPersistedException;
-
-	Piso findById(int id);
 	
-	Piso findById(Long id);
-
-	List<Piso> getPisos(String login);
-
+	Piso findById(long id);
 	void save(Piso p, String login) throws AlreadyPersistedException;
 
 	void delete(int id, String login) throws NotPersistedException;

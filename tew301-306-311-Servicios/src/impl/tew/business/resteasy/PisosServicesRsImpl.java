@@ -12,18 +12,13 @@ import impl.tew.business.classes.PisosBaja;
 import impl.tew.business.classes.PisosBuscar;
 import impl.tew.business.classes.PisosDuplicar;
 import impl.tew.business.classes.PisosListado;
+import impl.tew.business.classes.PisosUpdate;
 
 public class PisosServicesRsImpl implements PisosServicesRs{
 	
 	@Override
-	public List<Piso> getPisos(){
-		try {
-			return new PisosListado().getPisos();
-		}catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+	public List<Piso> getPisos() throws Exception{
+		return new PisosListado().getPisos();
 	}
 
 	@Override
@@ -32,38 +27,19 @@ public class PisosServicesRsImpl implements PisosServicesRs{
 	}
 
 	@Override
-	public void deletePiso(int id, String login) throws EntityNotFoundException {
-		new PisosBaja().delete(id, login);
-		
-	}
-
-	@Override
-	public List<Piso> getPisos(String login) {
-		return new PisosListado().getPisos(login);
-	}
-
-	@Override
-	public void savePiso(Piso p, String login) {
-		new PisosAlta().save(p, login);	
-	}
-
-	@Override
-	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
-		new PisosDuplicar().duplicar(piso);
+	public void savePiso(Piso piso) {
+		new PisosAlta().save(piso);	
 	}
 
 	@Override
 	public void deletePiso(Long id) throws EntityNotFoundException {
-
-	}
-
-	@Override
-	public void savePiso(Piso piso) throws EntityAlreadyExistsException {
-		
+		new PisosBaja().delete(id);
 	}
 
 	@Override
 	public void updatePiso(Piso piso) throws EntityNotFoundException {
+		new PisosUpdate().update(piso);
 		
 	}
+
 }

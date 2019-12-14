@@ -18,12 +18,12 @@ import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Piso;
 
 @Path("/PisosServicesRs")
-public interface PisosServicesRs extends PisosService {
+public interface PisosServicesRs {
 
 	// responde a peticiones GET
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Piso> getPisos();
+	public List<Piso> getPisos() throws Exception;
 
 	@GET
 	// paramentro indicado en la URL, utilizado el metodo con @PathParam

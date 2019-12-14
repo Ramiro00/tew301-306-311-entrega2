@@ -10,6 +10,7 @@ public class Piso {
 	private int ano;
 	private int estado;
 	private String sestado;
+	private String Foto;
 	private boolean visita;
 
 	public boolean isVisita() {
@@ -104,6 +105,14 @@ public class Piso {
 
 	public void setSestado(String sestado) {
 		this.sestado = sestado;
+	}
+	
+	public String getFoto() {
+		return Foto;
+	}
+
+	public void setFoto(String foto) {
+		Foto = foto;
 	}
 
 }

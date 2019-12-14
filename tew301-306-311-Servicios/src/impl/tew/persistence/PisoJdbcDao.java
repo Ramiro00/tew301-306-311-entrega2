@@ -40,6 +40,7 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setCiudad(rs.getString("Ciudad"));
 				piso.setAno(rs.getInt("Ano"));
 				piso.setEstado(rs.getInt("Estado"));
+				piso.setFoto(rs.getString("Foto"));
 				pisos.add(piso);
 			}
 
@@ -76,14 +77,63 @@ public class PisoJdbcDao implements PisoDao {
 		return pisos;
 	}
 
+	
 	@Override
-	public List<Piso> getPisos(String login) {
-
+	public void update(Piso p) throws NotPersistedException {
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		Connection con = null;
+		int rows = 0;
 
-		List<Piso> pisos = new ArrayList<Piso>();
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("update PISOS "
+					+ "set IDAgente = ?, Precio = ?, Direccion = ?, Ciudad = ?,Ano = ?,Estado = ?,Foto = ?" + "where id = ?");
+
+			ps.setInt(1, p.getIdagente());
+			ps.setInt(2, p.getPrecio());
+			ps.setString(3, p.getDireccion());
+			ps.setString(4, p.getCiudad());
+			ps.setInt(5, p.getAno());
+			ps.setInt(6, p.getEstado());
+			ps.setString(7, p.getFoto());
+			ps.setInt(8, p.getId());
+			rows = ps.executeUpdate();
+			if (rows != 1) {
+				throw new NotPersistedException("Piso " + p + " not found");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+	}
+
+	@Override
+	public void save(Piso p) throws AlreadyPersistedException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		int rows = 0;
 
 		try {
 
@@ -91,20 +141,20 @@ public class PisoJdbcDao implements PisoDao {
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from PISOS");
-			rs = ps.executeQuery();
+			ps = con.prepareStatement("insert into PISOS (IDAgente, Precio, Direccion, Ciudad, Ano, Estado, Foto) "
+					+ "values (?, ?, ?, ?, ?, ?, ?)");
 
-			while (rs.next()) {
-				Piso piso = new Piso();
-				piso.setId(rs.getInt("ID"));
-				piso.setIdagente(rs.getInt("IDAgente"));
-				piso.setPrecio(rs.getInt("Precio"));
-				piso.setDireccion(rs.getString("Direccion"));
-				piso.setCiudad(rs.getString("Ciudad"));
-				piso.setAno(rs.getInt("Ano"));
-				piso.setEstado(rs.getInt("Estado"));
-				piso.setVisita(pisovisitado(rs.getInt("ID"), login));
-				pisos.add(piso);
+			ps.setInt(1, p.getIdagente());
+			ps.setInt(2, p.getPrecio());
+			ps.setString(3, p.getDireccion());
+			ps.setString(4, p.getCiudad());
+			ps.setInt(5, p.getAno());
+			ps.setInt(6, p.getEstado());
+			ps.setString(7, p.getFoto());
+
+			rows = ps.executeUpdate();
+			if (rows != 1) {
+				throw new AlreadyPersistedException("Piso " + p + " already persisted");
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -114,13 +164,6 @@ public class PisoJdbcDao implements PisoDao {
 			e.printStackTrace();
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
 			if (ps != null) {
 				try {
 					ps.close();
@@ -137,10 +180,52 @@ public class PisoJdbcDao implements PisoDao {
 			;
 		}
 
-		return pisos;
+	}
+	
+	@Override
+	public void delete(long id) throws NotPersistedException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		int rows = 0;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from PISOS where ID = ?");
+
+			ps.setLong(1, id);
+
+			rows = ps.executeUpdate();
+			if (rows != 1) {
+				throw new NotPersistedException("Piso " + id + " no encontrado");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
 
 	}
-
+	
 	private boolean pisovisitado(int idpiso, String login) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -252,55 +337,7 @@ public class PisoJdbcDao implements PisoDao {
 
 	}
 
-	@Override
-	public void update(Piso p) throws NotPersistedException {
-		PreparedStatement ps = null;
-		Connection con = null;
-		int rows = 0;
 
-		try {
-			String SQL_DRV = "org.hsqldb.jdbcDriver";
-			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-			Class.forName(SQL_DRV);
-			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("update PISOS "
-					+ "set IDAgente = ?, Precio = ?, Direccion = ?, Ciudad = ?,Ano = ?,Estado = ?" + "where id = ?");
-
-			ps.setInt(1, p.getIdagente());
-			ps.setInt(2, p.getPrecio());
-			ps.setString(3, p.getDireccion());
-			ps.setString(4, p.getCiudad());
-			ps.setInt(5, p.getAno());
-			ps.setInt(6, p.getEstado());
-
-			rows = ps.executeUpdate();
-			if (rows != 1) {
-				throw new NotPersistedException("Piso " + p + " not found");
-			}
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Driver not found", e);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-		}
-	}
 
 	@Override
 	public void save(Piso p, String login) throws AlreadyPersistedException {
@@ -529,7 +566,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public Piso findById(Long id) {
+	public Piso findById(long id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = null;
@@ -650,9 +687,4 @@ public class PisoJdbcDao implements PisoDao {
 		return piso;
 	}
 
-	@Override
-	public Piso findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
