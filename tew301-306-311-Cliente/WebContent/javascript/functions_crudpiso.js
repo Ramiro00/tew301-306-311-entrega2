@@ -72,13 +72,14 @@ function View(){
 	this.loadpisoFromForm = function() {
 		// Cogemos el piso nuevo del formulario.
 		var piso = {
-			id 		: $("#id").val(),
-			idagente: $("#idagente").val(),
-			precio 	: $("#precio").val(),
-			direccion : $("#direccion").val(),
-			direccion 	: $("#ciudad").val(),
-			ano 	: $("#ano").val(),
-			estado 	: $("#estado").val()
+				id 		: $("#id").val(),
+				idagente: $("#idagente").val(),
+				precio 	: $("#precio").val(),
+				direccion : $("#direccion").val(),
+				direccion 	: $("#ciudad").val(),
+				ano 	: $("#ano").val(),
+				estado 	: $("#estado").val(),
+				foto: $("foto").val()
 		};
 		return piso;
 	}
@@ -92,6 +93,7 @@ function View(){
 		$("#ciudad").val(piso.ciudad);
 		$("#ano").val(piso.ano);
 		$("#estado").val(piso.estado);
+		foto: $("foto").val();
 		$("#id").focus(); // Ponemos el foco en el campo Nombre.
 	} 
 
@@ -143,21 +145,67 @@ function Controller(varmodel, varview) {
 			// pisos o el editado
 			that.view.list(that.model.tbPisos);
 		}); 
-	}
 
-	// Manejador del enlace de edición de un piso en la tabla
-	$("#tblList").on("click", ".btnEdit",
-			// Método que gestiona el evento de clickar en el evento
-			function(event) {
-		// Obtenemos el id del piso seleccionado mediante el icono de
-		// edición
-		var id_piso = that.view.getIdpiso($(this));
-		// Obtenemos el piso con el id_piso
-		var piso = that.model.find(id_piso);
-		// Cargamos el formulario con los datos del piso seleccionado para
-		// editar
-		that.view.loadpisoInForm(piso);
-	}); 
+		// Manejador del enlace de edición de un piso en la tabla
+		$("#tblList").on("click", ".btnEdit",
+				// Método que gestiona el evento de clickar en el evento
+				function(event) {
+			// Obtenemos el id del piso seleccionado mediante el icono de
+			// edición
+			var id_piso = that.view.getIdpiso($(this));
+			// Obtenemos el piso con el id_piso
+			var piso = that.model.find(id_piso);
+			// Cargamos el formulario con los datos del piso seleccionado para
+			// editar
+			that.view.loadpisoInForm(piso);
+		}); 
+
+		$("#formimportar").bind("submit",
+				// Método que gestiona el evento de clickar el botón submit del
+				// formulario
+				function(event) {
+			$.ajax({
+				url : "http://localhost/Servidor/pisos.json",
+				type : "GET",
+				dataType : "json",
+				// Listado de pisos (función de callback)
+				success : function(pisos) {
+					tbpisos=localStorage.getItem("tbPisos");
+					tbPisos=JSON.parse(tbPisos);
+					if (tbPisos == null)
+						tbPisos = [];
+					alert("Recibida respuesta con exito!");
+
+					//Para acceder a los datos de los pisos se puede recorrer así
+					for ( var i in pisos) {
+
+						//Preparamos el registro de un piso
+						var piso = JSON.stringify({
+							id : pisos[i].ID,
+							precio : pisos[i].Precio,
+							direccion: pisos[i].Direccion,
+							ciudad: pisos[i].Ciudad,
+							ano: pisos[i].Anyo,
+							estado: pisos[i].Estado,
+							foto: pisos[i].Foto
+						});
+						
+						var piso = that.model.find(piso.id);
+						if(piso==null){
+							that.model.add(piso);
+						}else{
+							that.model.edit(piso);
+						}
+					}
+
+					// Actualizamos el modelo y la vista
+
+					// Remitir piso al servidor vía servicios web
+
+				} //Cierre de la función de callback
+			}); //Cierre del parámetro de .ajax
+		}); 
+	}
 }; 
 
 $(function() {
