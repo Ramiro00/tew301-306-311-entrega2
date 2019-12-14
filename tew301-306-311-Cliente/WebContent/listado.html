@@ -3,7 +3,7 @@
 ***************************************************
 Asignatura: Tecnologías Web
 Titulación: GIITIN
-Autor     : Cabal
+Autor     : UO257352
 Universidad de Oviedo
 ***************************************************
 -->
@@ -16,29 +16,28 @@ Universidad de Oviedo
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-<script
-	src="jquery/Jquery-1.11.3.min.js"></script>
-<script
-	src="bootstrap/js/bootstrap.min.js"></script>
-	
-
+<script src="jquery/Jquery-1.11.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gestioneitorv6.0/rest-jsapi"></script>
+<script type="text/javascript" src="javascript/functions_crudalumno.js"></script>
 </head>
+
 <body style="background-color: #E3CAA1">
 
 	<div class="container">
 		<!-- 
-	***************************************************
-	* CABECERA DE LA PAGINA ***************************
-	***************************************************
-	-->
+    ***************************************************
+    * CABECERA DE LA PAGINA ***************************
+    ***************************************************
+    -->
 		<div class="page-header">
 			<h1>Tecnologias Web</h1>
 			<!-- 
-		***************************************************
-		* MENU  DINAMICO **********************************
-		***************************************************
-		-->
+        ***************************************************
+        * MENU  DINAMICO **********************************
+        ***************************************************
+        -->
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">Gestioneitor</a>
@@ -48,7 +47,8 @@ Universidad de Oviedo
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Alumnos<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-							   	<li><a href="crudAlumno.html" target="formulario">CRUD Alumno</a></li>
+								<li><a href="crudAlumno.html" target="formulario">CRUD
+										Alumno</a></li>
 								<li><a href="#matricularAsignaturas">Matricular
 										Asignaturas</a></li>
 								<li><a href="#desmatricularAsignaturas">Quitar
@@ -78,28 +78,57 @@ Universidad de Oviedo
 					</ul>
 				</div>
 			</nav>
-
 		</div>
-
-
 		<div class="row">
 
 			<!-- 
-	***************************************************
-	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
-	***************************************************
-	-->
-			<div class="col-md-9">
-				<object name="formulario" type="text/hetml" data="login.html" width="100%"
-					height="425px"></object>
-			</div>
+    ***************************************************
+    * SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
+    ***************************************************
+    -->
+			<!-- Clase modelo -->
+			<script type="text/javascript">
+            $(function() {
+            	//Creamos el modelo con los datos y la conexión al servicio web.
+            	var model = new Model();
+            	model.load();
+            }
+            </script>
 
+			<div class="col-md-9">
+				<section>
+					<article>
+						<h3>Listado de pisos:</h3>
+
+						<script type="text/javascript">
+ 							function solicitarDatosPisos() {
+							 	var pisos=PisosService.getPisos();
+								// Obtener el elemento HTML donde ir dejando el resultado
+							 	// del servicio
+								 div = document.getElementById("contenido")
+								 div.innerHTML = "";
+								 for (i in pisos) {
+								 		div.innerHTML += pisos[i]["id"] + pisos[i]["direccion"] +
+										pisos[i]["precio"] + pisos[i]["idagente"]+"</br>";
+								}
+							 }
+						</script>
+						
+						<div onload="solicitarDatosPisos()">
+							
+							<br /></div>
+							<div id="contenido" style="height: 90%; top: 30px"></div>
+					</article>
+				</section>
+			</div>
+			
 
 			<!-- 
-	***************************************************
-	* ELEMENTO LATERAL INFORMATIVO ********************
-	***************************************************
-	-->
+    ***************************************************
+    * ELEMENTO LATERAL INFORMATIVO ********************
+    ***************************************************
+        -->
+
 			<div class="col-md-3 bg-info">
 				<aside>
 					<header>
@@ -108,18 +137,18 @@ Universidad de Oviedo
 					<p>En este proyecto se incorporan las siguientes
 						características:
 					<ol>
-						<li>CRUD de la entidad alumno</li>
-						<li>Consumo de servicios Rest para las operaciones de CRUD anteriores</li>
+						<li>CRUD</li>
+						<li>Uso de REST para operacioones CRUD</li>
 					</ol>
 				</aside>
 			</div>
 		</div>
 
 		<!-- 
-	***************************************************
-	* ELEMENTO PIE DE NAVEGACION** ********************
-	***************************************************
-	-->
+    ***************************************************
+    * ELEMENTO PIE DE NAVEGACION** ********************
+    ***************************************************
+    -->
 		<div class="panel panel-default">
 			<div class="panel-footer">
 				<nav>
@@ -131,8 +160,5 @@ Universidad de Oviedo
 			</div>
 		</div>
 	</div>
-
-
-
 </body>
 </html>
