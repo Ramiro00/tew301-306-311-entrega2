@@ -26,7 +26,7 @@ Universidad de Oviedo
 </head>
 
 
-<body style="background-color: #E3CAA1" onload="list()">
+<body style="background-color: #E3CAA1" onload="View.list()">
 
 
 			<!-- 
@@ -34,23 +34,13 @@ Universidad de Oviedo
     * SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
     ***************************************************
     -->
-			<!-- Clase modelo -->
-			<script type="text/javascript">
-            $(function() {
-            	//Creamos el modelo con los datos y la conexión al servicio web.
-            	var model = new Model();
-            	model.load();
-            	var view = new View();
-            	view.list();
-            	
-            }
-            </script>
 
 			<div class="col-md-9">
 				<section>
-					<article>
-						<h3>Listado de pisos:</h3>
-						<div id="lista" style="height:90%;top:30px"></div>
+					<h3>Listado de pisos</h3>
+					<article class="table-responsive">
+						<table class="table table-striped table-responsive" id="tblList">
+						</table>
 					</article>
 				</section>
 			</div>

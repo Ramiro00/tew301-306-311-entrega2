@@ -1,6 +1,12 @@
 package com.tew.model;
 
-public class Piso {
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="piso")
+public class Piso implements Serializable {
 
 	private int id;
 	private int idagente;
@@ -13,6 +19,20 @@ public class Piso {
 	private String Foto;
 	private boolean visita;
 
+	public Piso() {
+		
+	}
+	
+	public Piso(int id, int idagente, int precio, String direccion, String ciudad, int ano, int estado) {
+		this.id=id;
+		this.idagente=idagente;
+		this.precio=precio;
+		this.direccion=direccion;
+		this.ciudad=ciudad;
+		this.ano=ano;
+		this.estado=estado;
+	}
+	
 	public boolean isVisita() {
 		return visita;
 	}
@@ -20,7 +40,8 @@ public class Piso {
 	public void setVisita(boolean visita) {
 		this.visita = visita;
 	}
-
+	
+	@XmlElement
 	public int getId() {
 		return id;
 	}
@@ -28,7 +49,8 @@ public class Piso {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	@XmlElement
 	public int getIdagente() {
 		return idagente;
 	}
@@ -36,7 +58,8 @@ public class Piso {
 	public void setIdagente(int idagente) {
 		this.idagente = idagente;
 	}
-
+	
+	@XmlElement
 	public int getPrecio() {
 		return precio;
 	}
@@ -45,6 +68,7 @@ public class Piso {
 		this.precio = precio;
 	}
 
+	@XmlElement
 	public String getDireccion() {
 		return direccion;
 	}
@@ -53,6 +77,7 @@ public class Piso {
 		this.direccion = direccion;
 	}
 
+	@XmlElement
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -61,6 +86,7 @@ public class Piso {
 		this.ciudad = ciudad;
 	}
 
+	@XmlElement
 	public int getAno() {
 		return ano;
 	}
@@ -69,6 +95,7 @@ public class Piso {
 		this.ano = ano;
 	}
 
+	@XmlElement
 	public int getEstado() {
 		return estado;
 	}
