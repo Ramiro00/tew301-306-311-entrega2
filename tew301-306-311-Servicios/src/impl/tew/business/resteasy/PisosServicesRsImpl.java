@@ -15,7 +15,12 @@ public class PisosServicesRsImpl implements PisosServicesRs {
 
 	@Override
 	public List<Piso> getPisos() throws Exception {
-		return new PisosListado().getPisos();
+		try {
+			return new PisosListado().getPisos();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -36,5 +41,29 @@ public class PisosServicesRsImpl implements PisosServicesRs {
 	@Override
 	public void updatePiso(Piso piso) throws EntityNotFoundException {
 		new PisosUpdate().update(piso);
+	}
+
+	@Override
+	public void deletePiso(int id, String login) throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Piso> getPisos(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void savePiso(Piso p, String login) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		
 	}
 }
