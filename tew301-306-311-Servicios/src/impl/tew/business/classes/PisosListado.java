@@ -1,9 +1,12 @@
 package impl.tew.business.classes;
 
 import java.util.List;
+
+import com.tew.business.exception.EntityNotFoundException;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Piso;
 import com.tew.persistence.PisoDao;
+import com.tew.persistence.exception.NotPersistedException;
 
 /**
  * Esta clase pertenece a la capa de persistencia y ejecuta un proceso de
@@ -20,14 +23,15 @@ import com.tew.persistence.PisoDao;
  */
 public class PisosListado {
 
-	public List<Piso> getPisos() throws Exception {
+	public List<Piso> getPisos() throws EntityNotFoundException {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		return dao.getPisos();
 
 	}
 	
-	public List<Piso> getPisos(String login) {
+	public List<Piso> getPisos(String login) throws EntityNotFoundException {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		return dao.getPisos();
 	}
+
 }

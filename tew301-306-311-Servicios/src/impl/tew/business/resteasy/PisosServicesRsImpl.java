@@ -2,22 +2,19 @@ package impl.tew.business.resteasy;
 
 import java.util.List;
 
-import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.business.resteasy.PisosServicesRs;
 import com.tew.model.Piso;
-
 import impl.tew.business.classes.PisosAlta;
 import impl.tew.business.classes.PisosBaja;
 import impl.tew.business.classes.PisosBuscar;
-import impl.tew.business.classes.PisosDuplicar;
 import impl.tew.business.classes.PisosListado;
 import impl.tew.business.classes.PisosUpdate;
 
-public class PisosServicesRsImpl implements PisosServicesRs{
-	
+public class PisosServicesRsImpl implements PisosServicesRs {
+
 	@Override
-	public List<Piso> getPisos() throws Exception{
+	public List<Piso> getPisos() throws Exception {
 		return new PisosListado().getPisos();
 	}
 
@@ -28,7 +25,7 @@ public class PisosServicesRsImpl implements PisosServicesRs{
 
 	@Override
 	public void savePiso(Piso piso) {
-		new PisosAlta().save(piso);	
+		new PisosAlta().save(piso);
 	}
 
 	@Override
@@ -39,7 +36,5 @@ public class PisosServicesRsImpl implements PisosServicesRs{
 	@Override
 	public void updatePiso(Piso piso) throws EntityNotFoundException {
 		new PisosUpdate().update(piso);
-		
 	}
-
 }

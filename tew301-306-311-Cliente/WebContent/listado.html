@@ -2,11 +2,11 @@
 <html>
 <head>
 <title>Ejemplo sencillo de web service con RESTEasy</title>
-<script type="text/javascript" 
-          src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"> 
-  </script>
+<script type="text/javascript"
+    src="http://localhost:8130/tew301-306-311-Servicios/rest-jsapi">
+	
+</script>
 <script type="text/javascript">
-
 	function solicitarDatosPisos() {
 		var pisos = PisosServicesRs.getPisos();
 		// Obtener el elemento HTML donde ir dejando el resultado
@@ -14,21 +14,22 @@
 		div = document.getElementById("contenido");
 		div.innerHTML = "";
 		for (i in pisos) {
-			div.innerHTML +=  pisos[i]["id"] + pisos[i]["idagente"]
-					+ pisos[i]["precio"] + pisos[i]["direccion"] + 
-					pisos[i]["ciudad"] + pisos[i]["ano"] + pisos[i]["sestado"] + "</br>";
+			div.innerHTML += pisos[i]["id"] + pisos[i]["idagente"]
+					+ pisos[i]["precio"] + pisos[i]["direccion"]
+					+ pisos[i]["ciudad"] + pisos[i]["ano"]
+					+ pisos[i]["sestado"] + "</br>";
 		}
 	}
 </script>
 </head>
 
 <body>
-	<h1>Listado de Pisos</h1>
-	<div>
-		Obtener lista de pisos <INPUT TYPE="button" NAME="button"
-			Value="Pulsa" onClick="solicitarDatosPisos()">
-	</div>
-	<br />
-	<table id="contenido" style="height: 90%; top: 30px"></table>
+    <h1>Listado de Pisos</h1>
+    <div>
+        Obtener lista de pisos <INPUT TYPE="button" NAME="button"
+            Value="Pulsa" onClick="solicitarDatosPisos()">
+    </div>
+    <br />
+    <table id="contenido" style="height: 90%; top: 30px"></table>
 </body>
 </html>
