@@ -1,4 +1,3 @@
-
 //Clase que contiene el Modelo de la aplicación.
 function Model(){
 	//Lista de pisos.
@@ -160,71 +159,6 @@ function Controller(varmodel, varview) {
 			that.view.loadpisoInForm(piso);
 		}); 
 		
-		$("#formdatos").bind("submit",
-				// Método que gestiona el evento de clickar el botón submit del
-				// formulario
-				function(event) {
-			// Si el piso cargado en el formulario tiene ID se invoca al
-			// método de 
-			// edición
-			// sino se invoca al método de alta.
-			piso = that.view.loadpisoFromForm();
-			if ($("#id").val() == "") {
-				that.model.add(piso);
-			} else {
-				that.model.edit(piso);
-			}
-			// Volvemos a listar los pisos restantes para que aparezca el
-			// nuevo
-			// pisos o el editado
-			that.view.list(that.model.tbPisos);
-		}); 
-
-		$("#formimportar").bind("submit",
-				// Método que gestiona el evento de clickar el botón submit del
-				// formulario
-				function(event) {
-			$.ajax({
-				url : "http://localhost/Servidor/pisos.json",
-				type : "GET",
-				dataType : "json",
-				// Listado de pisos (función de callback)
-				success : function(pisos) {
-					tbpisos=localStorage.getItem("tbPisos");
-					tbPisos=JSON.parse(tbPisos);
-					if (tbPisos == null)
-						tbPisos = [];
-					alert("Recibida respuesta con exito!");
-
-					//Para acceder a los datos de los pisos se puede recorrer así
-					for ( var i in pisos) {
-
-						//Preparamos el registro de un piso
-						var piso = JSON.stringify({
-							id : pisos[i].ID,
-							precio : pisos[i].Precio,
-							direccion: pisos[i].Direccion,
-							ciudad: pisos[i].Ciudad,
-							ano: pisos[i].Anyo,
-							estado: pisos[i].Estado,
-							foto: pisos[i].Foto
-						});
-						
-						var piso = that.model.find(piso.id);
-						if(piso==null){
-							that.model.add(piso);
-						}else{
-							that.model.edit(piso);
-						}
-					}
-
-					// Actualizamos el modelo y la vista
-
-					// Remitir piso al servidor vía servicios web
-
-				} //Cierre de la función de callback
-			}); //Cierre del parámetro de .ajax
-		}); 
 	}
 }; 
 

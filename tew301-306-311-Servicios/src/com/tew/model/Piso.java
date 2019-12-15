@@ -16,14 +16,14 @@ public class Piso implements Serializable {
 	private int ano;
 	private int estado;
 	private String sestado;
-	private String Foto;
+	private String foto;
 	private boolean visita;
 
 	public Piso() {
 		
 	}
 	
-	public Piso(int id, int idagente, int precio, String direccion, String ciudad, int ano, int estado) {
+	public Piso(int id, int idagente, int precio, String direccion, String ciudad, int ano, int estado, String foto) {
 		this.id=id;
 		this.idagente=idagente;
 		this.precio=precio;
@@ -31,6 +31,7 @@ public class Piso implements Serializable {
 		this.ciudad=ciudad;
 		this.ano=ano;
 		this.estado=estado;
+		this.foto = foto;
 	}
 	
 	public boolean isVisita() {
@@ -135,11 +136,19 @@ public class Piso implements Serializable {
 	}
 	
 	public String getFoto() {
-		return Foto;
+		return foto;
 	}
 
 	public void setFoto(String foto) {
-		Foto = foto;
+		this.foto = foto;
 	}
+
+	@Override
+	public String toString() {
+		return "Piso [id=" + id + ", idagente=" + idagente + ", precio=" + precio + ", direccion=" + direccion
+				+ ", ciudad=" + ciudad + ", ano=" + ano + ", estado=" + estado + ", foto=" + foto + "]";
+	}
+	
+	
 
 }
