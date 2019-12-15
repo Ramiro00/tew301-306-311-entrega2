@@ -1,50 +1,34 @@
-
-<!-- 
-***************************************************
-Asignatura: Tecnologías Web
-Titulación: GIITIN
-Autor     : UO257352
-Universidad de Oviedo
-***************************************************
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:f="http://java.sun.com/jsf/core">
+<html>
 <head>
-<title>Listado de PISOS</title> 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<script src="jquery/Jquery-1.11.3.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
+<title>Ejemplo sencillo de web service con RESTEasy</title>
 <script type="text/javascript" 
           src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"> 
   </script>
-<script type="text/javascript" src="javascript/functions_crudpiso.js"></script>
+<script type="text/javascript">
+
+	function solicitarDatosPisos() {
+		var pisos = PisosServicesRs.getPisos();
+		// Obtener el elemento HTML donde ir dejando el resultado
+		// del servicio
+		div = document.getElementById("contenido");
+		div.innerHTML = "";
+		for (i in pisos) {
+			div.innerHTML +=  pisos[i]["id"] + pisos[i]["idagente"]
+					+ pisos[i]["precio"] + pisos[i]["direccion"] + 
+					pisos[i]["ciudad"] + pisos[i]["ano"] + pisos[i]["sestado"] + "</br>";
+		}
+	}
+</script>
 </head>
 
-
-<body style="background-color: #E3CAA1" onload="View.list()">
-
-
-			<!-- 
-    ***************************************************
-    * SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
-    ***************************************************
-    -->
-
-			<div class="col-md-9">
-				<section>
-					<h3>Listado de pisos</h3>
-					<article class="table-responsive">
-						<table class="table table-striped table-responsive" id="tblList">
-						</table>
-					</article>
-				</section>
-			</div>
-			
-	
+<body>
+	<h1>Listado de Pisos</h1>
+	<div>
+		Obtener lista de pisos <INPUT TYPE="button" NAME="button"
+			Value="Pulsa" onClick="solicitarDatosPisos()">
+	</div>
+	<br />
+	<table id="contenido" style="height: 90%; top: 30px"></table>
 </body>
 </html>

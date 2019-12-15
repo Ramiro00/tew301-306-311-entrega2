@@ -159,6 +159,26 @@ function Controller(varmodel, varview) {
 			// editar
 			that.view.loadpisoInForm(piso);
 		}); 
+		
+		$("#formdatos").bind("submit",
+				// Método que gestiona el evento de clickar el botón submit del
+				// formulario
+				function(event) {
+			// Si el piso cargado en el formulario tiene ID se invoca al
+			// método de 
+			// edición
+			// sino se invoca al método de alta.
+			piso = that.view.loadpisoFromForm();
+			if ($("#id").val() == "") {
+				that.model.add(piso);
+			} else {
+				that.model.edit(piso);
+			}
+			// Volvemos a listar los pisos restantes para que aparezca el
+			// nuevo
+			// pisos o el editado
+			that.view.list(that.model.tbPisos);
+		}); 
 
 		$("#formimportar").bind("submit",
 				// Método que gestiona el evento de clickar el botón submit del

@@ -41,62 +41,44 @@ Universidad de Oviedo
 		* MENU  DINAMICO **********************************
 		***************************************************
 		-->
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">TEW
-                        Inmobiliaria</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown"><a
-                            class="dropdown-toggle"
-                            data-toggle="dropdown" href="#">Gestión
-                                de pisos<span class="caret"></span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="crudPisos.html"
-                                    target="formulario">Listado de
-                                        pisos</a></li>
-                                <li><a
-                                    href="/tew301-306-311-Cliente/import.html"
-                                    target="formulario">Alta de piso
-                                        Pisos</a></li>
-                                <li><a
-                                    href="/tew301-306-311-Cliente/listado.html"
-                                    target="formulario">Editar piso</a></li>
-                                <li><a
-                                    href="/tew301-306-311-Cliente/import.html"
-                                    target="formulario">Importar
-                                        pisos</a></li>
-                            </ul></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pisos  por cuidad</a></li>
-                            
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pisos  por precio</a></li>
-
-                        <li class="dropdown"><a
-                            class="dropdown-toggle"
-                            data-toggle="dropdown" href="#">Administración
-                                del sitio<span class="caret"></span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#Reiniciar">Reinicio
-                                        base de datos</a></li>
-                            </ul></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html"
-                            target="formulario"><span
-                                class="glyphicon glyphicon-log-in"></span>
-                                Login</a></li>
-                        <li><a href="login.html"
-                            target="formulario"><span
-                                class="glyphicon glyphicon-log-out"></span>
-                                Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Gestioneitor</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Pisos<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="crudPisos.html" target="formulario">CRUD
+										Piso</a></li>
+								<li><a href="/tew301-306-311-Cliente/import.html"
+									target="formulario">Importar Pisos</a></li>
+								<li><a href="/tew301-306-311-Cliente/listado.html"
+									target="formulario">Listado Pisos</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Base de Datos<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/tew301-306-311-Cliente/crudDatos.html"
+									target="formulario">Reiniciar la Base de Datos</a></li>
+							</ul></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Calificaciones<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#calificarAlumno">Calificar</a></li>
+							</ul></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="login.html" target="formulario"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="login.html" target="formulario"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
+				</div>
+			</nav>
 
         </div>
 
@@ -108,11 +90,12 @@ Universidad de Oviedo
 	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
 	***************************************************
 	-->
-            <div class="col-md-9" >
-                <object name="formulario" type="text/html"
-                    data="marco-inicio.html"
-                    width="100%" height="400px"></object>
-            </div>
+
+			<div class="col-md-9">
+				<object name="formulario" type="text/html"
+					data="/tew301-306-311-Cliente/import.html" width="100%"
+					height="425px"></object>
+			</div>
 
 
             <!-- 
@@ -120,21 +103,20 @@ Universidad de Oviedo
 	* ELEMENTO LATERAL INFORMATIVO ********************
 	***************************************************
 	-->
-            <div class="col-md-3 bg-info">
-                <aside>
-                    <header>
-                        <h2>Inmobiliaria TEW v2.0</h2>
-                    </header>
-                    <p>En este proyecto se incorporan las siguientes
-                        características:
-                    <ol>
-                        <li>CRUD de la entidad pisos</li>
-                        <li>Consumo de servicios Rest para las
-                            operaciones de CRUD anteriores</li>
-                    </ol>
-                </aside>
-            </div>
-        </div>
+			<div class="col-md-3 bg-info">
+				<aside>
+					<header>
+						<h2>Inmobiliaria TEQ v1.0</h2>
+					</header>
+					<p>En este proyecto se incorporan las siguientes
+						características:
+					<ol>
+						<li>CRUD de la entidad pisos</li>
+						<li>Consumo de servicios Rest para las operaciones de CRUD
+							anteriores</li>
+					</ol>
+				</aside>
+			</div>
 
         <!-- 
 	***************************************************
@@ -152,8 +134,5 @@ Universidad de Oviedo
             </div>
         </div>
     </div>
-
-
-
 </body>
 </html>
