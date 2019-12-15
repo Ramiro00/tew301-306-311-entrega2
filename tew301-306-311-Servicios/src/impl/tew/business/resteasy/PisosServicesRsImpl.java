@@ -28,6 +28,7 @@ public class PisosServicesRsImpl implements PisosServicesRs{
 
 	@Override
 	public void savePiso(Piso piso) {
+		System.out.print(piso.toString());
 		new PisosAlta().save(piso);	
 	}
 
