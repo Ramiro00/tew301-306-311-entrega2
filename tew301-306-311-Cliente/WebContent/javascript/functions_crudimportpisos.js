@@ -39,10 +39,9 @@ function Controller(varmodel) {
 			$.ajax({
 				url : "http://localhost:8080/tew301-306-311-Servicios/pisos.json",
 				type : "GET",
-				async : false,
 				dataType : "json",
 				// Listado de pisos (función de callback)
-				complete : function(pisos) {
+				success : function(pisos) {
 					alert("Recibida respuesta con exito!");
 					//Para acceder a los datos de los pisos se puede recorrer así
 					for ( var i in pisos) {//Preparamos el registro de un piso

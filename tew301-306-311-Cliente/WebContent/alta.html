@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Crud Alta</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<script src="jquery/Jquery-1.11.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"></script>
+<script type="text/javascript" src="javascript/functions_crudpiso.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+</head>
+
+<body style="background-color: #d3d3d3">
+	<div class="container">
+		<header>
+			<h2>Importar Pisos</h2>
+		</header>
+		<form id="formirmportar">
+			<span class="input-group-text" id="inputGroupFileAddon01">Elige
+				un fichero: </span>
+			<div class="custom-file">
+				<input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+			</div>
+			<br><br>
+			<input type="submit" value="Importar" id="btnImportar" required class="btn btn-default" />
+		</form>
+	</div>
+</body>
+</html>
