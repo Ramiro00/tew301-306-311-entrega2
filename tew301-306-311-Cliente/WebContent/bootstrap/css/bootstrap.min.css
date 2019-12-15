@@ -1406,7 +1406,8 @@ figure {
 }
 
 img {
-    vertical-align: middle
+    vertical-align: middle;
+    align-items: center;
 }
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
@@ -2278,7 +2279,7 @@ pre code {
     }
 }
 
-@media ( min-width :992px) {
+@media ( min-width :800px) {
     .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3,
         .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9
         {
@@ -2670,7 +2671,7 @@ th {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #f9f9f9
+    background-color: #d3e3d4
 }
 
 .table-hover>tbody>tr:hover {
@@ -5156,12 +5157,12 @@ border-bottom-right-radius
 }
 
 .navbar-default .navbar-brand {
-    color: #777
+    color: #000
 }
 
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover
     {
-    color: #5e5e5e;
+    color: #4e4e4e;
     background-color: transparent
 }
 

@@ -35,14 +35,14 @@ public class SimplePisosService implements PisosService {
 	}
 
 	@Override
-	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
-		new PisosDuplicar().duplicar(piso);		
-	}
-
-	@Override
 	public List<Piso> getPisos(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return new PisosListado().getPisos(login);
+		} catch (EntityNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }

@@ -9,20 +9,21 @@
 <script src="jquery/Jquery-1.11.3.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"></script>
-<script type="text/javascript" src="javascript/functions_crudalumno.js"></script>
+    src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"></script>
+<script type="text/javascript" src="javascript/functions_crudpisos.js"></script>
 <script type="text/javascript">
 	function solicitarDatosPisos() {
 		var pisos = PisosServicesRs.getPisos();
 		// Obtener el elemento HTML donde ir dejando el resultado
 		// del servicio
 		div = document.getElementById("contenido");
-		div.innerHTML = "<thead>" + "<tr> "+"<th>ID</th>" +" "+ "<th>IDAgente</th>" +" "+ "<th>Precio</th>"
-		+ "<th>Direccion</th>" + "<th>Ciudad</th>" + "<th>Estado</th>"+ "</tr>"
-		+ "</thead>"
+		div.innerHTML = "<thead>" + "<tr> " + "<th>ID</th>"
+				+ "<th>IDAgente</th>" + "<th>Precio</th>"
+				+ "<th>Direccion</th>" + "<th>Ciudad</th>" 
+				+ "<th>Estado</th>" + "</tr>" + "</thead>"
 		for (i in pisos) {
 			div.innerHTML += pisos[i]["id"] + ' ' + pisos[i]["idagente"] + ' '
-					+ pisos[i]["precio"] + ' '+ pisos[i]["direccion"] + ' '
+					+ pisos[i]["precio"] + ' ' + pisos[i]["direccion"] + ' '
 					+ pisos[i]["ciudad"] + ' ' + pisos[i]["ano"] + ' '
 					+ pisos[i]["sestado"] + "</br>";
 		}

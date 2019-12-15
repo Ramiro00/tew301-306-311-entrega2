@@ -13,10 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.CellEditEvent;
-import com.tew.business.CitasService;
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
-import com.tew.model.Cita;
 import com.tew.model.Piso;
 import com.tew.model.User;
 
@@ -56,25 +54,6 @@ public class BeanPisos implements Serializable {
 
 	public void setAlumnos(Piso[] pisos) {
 		this.pisos = pisos;
-	}
-
-	public String duplicarform(Piso piso) {
-		
-		try {
-		
-			this.piso.setAno(piso.getAno());
-			this.piso.setCiudad(piso.getCiudad());
-			this.piso.setDireccion(piso.getDireccion());
-			this.piso.setPrecio(piso.getPrecio());
-			this.piso.setEstado(piso.getEstado());
-			
-			return "duplicado";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-
 	}
 
 	public void iniciaPisos(ActionEvent event) {
@@ -215,18 +194,20 @@ public class BeanPisos implements Serializable {
 			return "error";
 		}
 	}
-	
-    public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-        	FacesContext facesContext = FacesContext.getCurrentInstance();
-    		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, bundle.getString("cellchanged"), "\n" + bundle.getString("oldcell") + ": " + oldValue + ", " + bundle.getString("newcell") +": " + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
+
+	public void onCellEdit(CellEditEvent event) {
+		Object oldValue = event.getOldValue();
+		Object newValue = event.getNewValue();
+
+		if (newValue != null && !newValue.equals(oldValue)) {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, bundle.getString("cellchanged"),
+					"\n" + bundle.getString("oldcell") + ": " + oldValue + ", " + bundle.getString("newcell") + ": "
+							+ newValue);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
 
 	@PostConstruct
 	public void init() {

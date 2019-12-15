@@ -51,19 +51,17 @@ public class PisosServicesRsImpl implements PisosServicesRs {
 
 	@Override
 	public List<Piso> getPisos(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return new PisosListado().getPisos(login);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public void savePiso(Piso p, String login) {
-		// TODO Auto-generated method stub
-		
+		//new PisosUpdate().update(p, login);
 	}
 
-	@Override
-	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		
-	}
 }
