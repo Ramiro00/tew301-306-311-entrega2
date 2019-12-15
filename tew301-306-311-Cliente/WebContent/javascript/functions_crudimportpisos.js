@@ -2,6 +2,13 @@
 //Clase que contiene el Modelo de la aplicación.
 function Model(){
 
+	this.tbPisos = null;
+
+//	Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
+	this.load = function() {
+		this.tbPisos = PisosServicesRs.getPisos();
+	}
+
 //	Llamamos al servicio de alta de piso
 	this.add = function(piso) {
 //		Llamamos al servicio de alta de piso
@@ -18,6 +25,16 @@ function Model(){
 			$entity : piso,
 			$contentType : "application/json"	
 		});
+	}
+	
+	this.find = function(id_piso) {
+		function checkpiso(obj) {
+			return obj.id == id_piso;
+		}
+//		Buscamos los datos del piso cuyo id_piso sea el mismo que el
+//		seleccionado
+		var piso = this.tbPisos.find(checkpiso);
+		return piso;
 	} 
 };
 
@@ -31,6 +48,7 @@ function Controller(varmodel) {
 	// Funcion de inicialización para cargar modelo y vista, definición de manejadores
 	this.init = function() {
 		// MANEJADORES DE EVENTOS
+		this.model.load();
 
 		$("#formimportar").bind("submit", function(event) {
 			// Método que gestiona el evento de clickar el botón submit del
@@ -56,24 +74,13 @@ function Controller(varmodel) {
 							foto: pisos[i].Foto
 						});
 
-						that.model.add(piso);
-						alert("Piso anadido!");
-						//tbPisos.push(piso);
-						//alert(that.model.find(piso.ID));
-						//alert(piso.ID);
-						//if(that.model.find(piso.ID)!= null){
-						//	that.model.edit(piso);
-						//}
-						//else that.model.add(piso);	
-
+//						Buscamos los datos del piso cuyo id_piso sea el mismo que el
+//						seleccionado
+						if(that.model.find(piso.ID)!= null){
+							that.model.edit(piso);
+						}
+						else that.model.add(piso);
 					}
-
-
-
-					//console.log(tbPisos);
-
-					// Remitir piso al servidor vía servicios web
-
 				} //Cierre de la función de callback
 			}); //Cierre del parámetro de .ajax
 		});

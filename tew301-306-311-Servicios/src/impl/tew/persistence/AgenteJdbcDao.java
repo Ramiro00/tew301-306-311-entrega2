@@ -76,11 +76,13 @@ public class AgenteJdbcDao implements AgenteDao{
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement(
-					"insert into AGENTES(LOGIN, PASSWD) " +
-					"values (?, ?)");
-
-			ps.setString(1, a.getLogin());
-			ps.setString(2, a.getPassword());
+					"insert into AGENTES(ID, LOGIN, PASSWD)" +
+					"values (?, ?, ?)");
+			
+			ps.setLong(1, a.getId());
+			ps.setString(2, a.getLogin());
+			ps.setString(3, a.getPassword());
+			
 
 			rows = ps.executeUpdate();
 			if (rows != 1) {
