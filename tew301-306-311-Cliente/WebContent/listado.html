@@ -1,0 +1,60 @@
+
+<!-- 
+***************************************************
+Asignatura: Tecnologías Web
+Titulación: GIITIN
+Autor     : UO257352
+Universidad de Oviedo
+***************************************************
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Listado de PISOS</title> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<script src="jquery/Jquery-1.11.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" 
+          src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi"> 
+  </script>
+<script type="text/javascript" src="javascript/functions_crudpiso.js"></script>
+</head>
+
+
+<body style="background-color: #E3CAA1" onload="list()">
+
+
+			<!-- 
+    ***************************************************
+    * SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
+    ***************************************************
+    -->
+			<!-- Clase modelo -->
+			<script type="text/javascript">
+            $(function() {
+            	//Creamos el modelo con los datos y la conexión al servicio web.
+            	var model = new Model();
+            	model.load();
+            	var view = new View();
+            	view.list();
+            	
+            }
+            </script>
+
+			<div class="col-md-9">
+				<section>
+					<article>
+						<h3>Listado de pisos:</h3>
+						<div id="lista" style="height:90%;top:30px"></div>
+					</article>
+				</section>
+			</div>
+			
+	
+</body>
+</html>
