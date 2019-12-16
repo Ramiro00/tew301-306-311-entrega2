@@ -163,12 +163,32 @@ function Controller(varmodel, varview) {
 
 		})
 		
+		//Ordenar de menor a mayor
 		$("#btnOrdenar").click(function(){
 			var p = that.model.tbPisos;
 			  var i, j, aux;
 		        for (i = 0; i < p.length - 1; i++) {
 		            for (j = 0; j < p.length - i - 1; j++) {
 		                if (p[j + 1].precio < p[j].precio) {
+		                    aux = p[j + 1]
+		                    p[j + 1] = p[j];
+		                    p[j] = aux;
+		                }
+		            }
+		        }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
+		//Ordenar de mayor a menor
+		$("#btnOrdenar2").click(function(){
+			var p = that.model.tbPisos;
+			  var i, j, aux;
+		        for (i = 0; i < p.length - 1; i++) {
+		            for (j = 0; j < p.length - i - 1; j++) {
+		                if (p[j + 1].precio > p[j].precio) {
 		                    aux = p[j + 1]
 		                    p[j + 1] = p[j];
 		                    p[j] = aux;
