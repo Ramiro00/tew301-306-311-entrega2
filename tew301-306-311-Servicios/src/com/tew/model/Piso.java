@@ -8,10 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="piso")
 public class Piso implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8610775824359607060L;
 	private int id;
 	private int idagente;
 	private int precio;
