@@ -23,22 +23,12 @@
 			<h1>Importar Pisos</h1>
 		</header>
 		<br>
-		<h3>Importar localmente</h3>
-		<form id="formimportarlocal">
-			<span class="input-group-text" id="inputGroupFileAddon01">Elige
-				un fichero: </span>
-			<div class="custom-file">
-				<input type="file" class="custom-file-input" id="inputGroupFile01"
-					aria-describedby="inputGroupFileAddon01">
-			</div>
-			<input type="submit" value="Importar" id="btnImportarlocal" required
-				class="btn btn-default" />
-		</form>
-		<br>
-		<h3>Importar desde el servidor</h3>
 		<form id="formimportarservidor">
-			<input type="submit" value="Importar" id="btnImportarremoto" required
-				class="btn btn-default" />
+			<label for="URL">Dirección desde la que importar:</label> <input
+				type="text" id="URL" size="75"
+				value="http://localhost:8080/tew301-306-311-Servicios/pisos.json" />
+			<br> <input type="submit" value="Importar"
+				id="btnImportarremoto" required class="btn btn-default" />
 		</form>
 	</div>
 </body>

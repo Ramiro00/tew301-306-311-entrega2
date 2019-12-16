@@ -2,7 +2,7 @@
 function Model() {
 
 	this.tbAgentes = null;
-	
+
 	this.load = function() {
 		this.tbAgentes = LoginServicesRs.getAgentes();
 	}
@@ -40,7 +40,7 @@ function Controller(varmodel, varview) {
 	// manejadores
 	this.init = function() {
 		this.model.load();
-		
+
 		// MANEJADORES DE EVENTOS
 
 		$("#login").bind("submit",
@@ -51,15 +51,15 @@ function Controller(varmodel, varview) {
 			var login = that.view.loadLoginFromForm();
 			var username = login['login'];
 			var password = login['password'];
-			
+
 			var users = that.model.tbAgentes;
 			for (var i in users){
-				if(users[i]['login']==username &&users[i]['password']==password)
-					sessionStorage.setItem('ID', users[i]['ID']);
-					window.location.href = "http://localhost:2000/tew301-306-311-Cliente/index-agente.html";
+				if(users[i]['login']==username &&users[i]['password']==password){}
+				window.localStorage.setItem('ID', users[i]['ID']);
+				window.location.href = "http://localhost:2000/tew301-306-311-Cliente/index-agente.html";
 			}
-				
-		});
+
+	});
 
 		$("#login").bind("reset",
 				// Método que gestiona el evento de clickar el botón submit del
@@ -71,7 +71,7 @@ function Controller(varmodel, varview) {
 			// Refrescar listado Pisos
 
 		});
-	}
+}
 };
 
 $(function() {

@@ -40,6 +40,7 @@ function Model(){
 
 function View() {
 	this.getPath = function() {
+		return $("#URL").val();
 	}
 }
 
@@ -57,50 +58,12 @@ function Controller(varmodel, varview) {
 		// MANEJADORES DE EVENTOS
 		this.model.load();
 
-		$("#formimportarlocal").bind("submit", function(event) {
-			var file = document.getElementById('inputGroupFile01').files[0];
-		       var reader = new FileReader();
-		       reader.readAsText(file);
-		       reader.onload = function(e) {
-		            // browser completed reading file - display it
-		            alert(e.target.result);
-		        };
-			$.getJSON(filename, function(json) {
-			    console.log(json); // this will show the info it in firebug console
-			});
-			// Método que gestiona el evento de clickar el botón submit del
-			// formulario
-			/*var filname = $("#inputGroupFile01").val();
-			var fileContent = getTxt();
-			var jsonData = JSON.parse(fileContent);
-			alert("Recibida respuesta con exito!");
-			//Para acceder a los datos de los pisos se puede recorrer así
-			for ( var i in pisos) {//Preparamos el registro de un piso
-				var piso = ({
-					id : pisos[i].ID,
-					idagente: 1,
-					precio : pisos[i].Precio,
-					direccion: pisos[i].Direccion,
-					ciudad: pisos[i].Ciudad,
-					ano: pisos[i].Anyo,
-					estado: pisos[i].Estado,
-					foto: pisos[i].Foto
-				});
-
-//				Buscamos los datos del piso cuyo id_piso sea el mismo que el
-//				seleccionado
-				if(that.model.find(piso.ID)!= null){
-					that.model.edit(piso);
-				}
-				else that.model.add(piso);
-			} */
-		});
-
 		$("#formimportarservidor").bind("submit", function(event) {
 			// Método que gestiona el evento de clickar el botón submit del
 			// formulario
+			var direccion = that.view.getPath();
 			$.ajax({
-				url : "http://localhost:8080/tew301-306-311-Servicios/pisos.json",
+				url : direccion,
 				type : "GET",
 				dataType : "json",
 				// Listado de pisos (función de callback)
@@ -110,7 +73,7 @@ function Controller(varmodel, varview) {
 					for ( var i in pisos) {//Preparamos el registro de un piso
 						var piso = ({
 							id : pisos[i].ID,
-							idagente: 1,
+							idagente: sessionStorage.getItem('ID'),
 							precio : pisos[i].Precio,
 							direccion: pisos[i].Direccion,
 							ciudad: pisos[i].Ciudad,
