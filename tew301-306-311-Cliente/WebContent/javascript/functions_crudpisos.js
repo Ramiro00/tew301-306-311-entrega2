@@ -152,7 +152,7 @@ function Controller(varmodel, varview) {
 		});
 		$("#btnSave").click(function(){
 			var piso = that.view.loadPisoFromForm();
-			//console.log(piso);
+			
 			if ($("#id").val() == "") {
 				that.model.add(piso);
 			} else {
@@ -200,6 +200,23 @@ function Controller(varmodel, varview) {
 			that.view.list(that.model.tbPisos);
 
 		})
+		
+		//Filtrar por ciudad
+		$("#btnFiltrar").click(function(){
+			var p = that.model.tbPisos;
+			  var i, j, aux;
+			  var ciudad = $("#ciudad");
+		        for (i = 0; i < p.length - 1; i++) {
+		            if (p[i].ciudad.contains(ciudad)){
+		            	alert("Ciudad encontrada!");
+		            }
+		        }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
 		
 		// Borrado de un piso en la tabla
 		$("#tblList").on("click", ".btnDelete",
