@@ -17,17 +17,25 @@ public class DatosServicesRsImpl implements DatosServicesRs {
 
 		AgentesAlta agentesalta = new AgentesAlta();
 
+		Agente a0 = new Agente();
+		a0.setID(0);
+		a0.setLogin("agente0@micorreo.com");
+		a0.setPassword("clave0");
+
 		Agente a1 = new Agente();
+		a1.setID(1);
 		a1.setLogin("agente1@micorreo.com");
 		a1.setPassword("clave1");
-
+		
 		Agente a2 = new Agente();
+		a2.setID(2);
 		a2.setLogin("agente2@micorreo.com");
 		a2.setPassword("clave2");
 
 		try {
-			agentesalta.save(a2);
+			agentesalta.save(a0);
 			agentesalta.save(a1);
+			agentesalta.save(a2);
 		} catch (EntityAlreadyExistsException e) {
 			e.printStackTrace();
 		}
