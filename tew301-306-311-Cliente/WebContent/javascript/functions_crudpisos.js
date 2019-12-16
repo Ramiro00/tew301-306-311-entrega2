@@ -2,11 +2,12 @@
 function Model() {
 	// Lista de pisos.
 	this.tbPisos = null;
+	this.tbPisosordenados = null;
 
 	// Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
 	this.load = function() {
 		this.tbPisos = PisosServicesRs.getPisos();
-
+		
 	}
 	// Llamamos al servicio de alta de piso
 	this.add = function(piso) {
@@ -68,7 +69,7 @@ function View() {
 									+ piso.direccion + "</td>" + "<td>"
 									+ piso.ciudad + "</td>" + "<td>"
 									+ piso.ano + "</td>" + "<td>"
-									+ piso.estado + "</td>" + "<td>"
+									+ piso.sestado + "</td>" + "<td>"
 									+ piso.foto + "</td></tr>");
 		}
 	}
@@ -150,6 +151,19 @@ function Controller(varmodel, varview) {
 			
 		});
 		$("#btnSave").click(function(){
+			var piso = that.view.loadPisoFromForm();
+			//console.log(piso);
+			if ($("#id").val() == "") {
+				that.model.add(piso);
+			} else {
+				that.model.edit(piso);
+			}
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
+		$("#btnOrdenar").click(function(){
 			var piso = that.view.loadPisoFromForm();
 			//console.log(piso);
 			if ($("#id").val() == "") {
