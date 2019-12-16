@@ -1646,6 +1646,9 @@ a.bg-primary:focus, a.bg-primary:hover {
     background-color: #dff0d8
 }
 
+.bg-fondo {
+    background-color: #fcfcfc
+}
 a.bg-success:focus, a.bg-success:hover {
     background-color: #c1e2b3
 }

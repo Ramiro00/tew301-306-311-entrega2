@@ -42,6 +42,10 @@ function Model() {
 		var piso = this.tbPisos.find(checkPiso);
 		return piso;
 	}
+/*    String nombre = file.getOriginalFilename();
+    String tipo   = file.getContentType();
+    Long tamano   = file.getSize();
+    byte[] pixel  = file.getBytes();*/
 };
 
 // Clase que contiene la gestión de la capa Vista
@@ -82,7 +86,7 @@ function View() {
 			direccion : $("#direccion").val(),
 			ciudad : $("#ciudad").val(),
 			ano : $("#ano").val(),
-			estado : $("#estado").val(),
+			estado : $('#estado').val(),
 			foto : $("#foto").val()
 		};
 		return piso;
@@ -92,7 +96,6 @@ function View() {
 		// Pintamos los datos Pisos sobre el formularios de alta/edición
 		$("#id").val(piso.id);
 		$("#idagente").val(piso.idagente);
-		$("#nombre").val(piso.nombre);
 		$("#precio").val(piso.precio);
 		$("#direccion").val(piso.direccion);
 		$("#ciudad").val(piso.ciudad);
@@ -187,6 +190,7 @@ function Controller(varmodel, varview) {
 			// editar
 			//console.log("paso");
 			that.view.loadPisoInForm(piso);
+			that.view.list(that.model.tbPisos);
 		});
 	}
 };
