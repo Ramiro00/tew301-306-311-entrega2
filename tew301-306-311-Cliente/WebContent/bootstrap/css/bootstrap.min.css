@@ -16,7 +16,10 @@ body {
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
     main, menu, nav, section, summary {
-    display: block
+    display: block;
+    padding: 10;
+    border: 10;
+    max-width: 90%;
 }
 
 audio, canvas, progress, video {
@@ -1646,6 +1649,9 @@ a.bg-primary:focus, a.bg-primary:hover {
     background-color: #dff0d8
 }
 
+.bg-fondo {
+    background-color: #fcfcfc
+}
 a.bg-success:focus, a.bg-success:hover {
     background-color: #c1e2b3
 }
@@ -2767,7 +2773,7 @@ table td[class*=col-], table th[class*=col-] {
 
 @media screen and (max-width:767px) {
     .table-responsive {
-        width: 100%;
+        width: 92%;
         margin-bottom: 15px;
         overflow-y: hidden;
         -ms-overflow-style: -ms-autohiding-scrollbar;

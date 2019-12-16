@@ -42,6 +42,10 @@ function Model() {
 		var piso = this.tbPisos.find(checkPiso);
 		return piso;
 	}
+/*    String nombre = file.getOriginalFilename();
+    String tipo   = file.getContentType();
+    Long tamano   = file.getSize();
+    byte[] pixel  = file.getBytes();*/
 };
 
 // Clase que contiene la gestión de la capa Vista
@@ -60,16 +64,15 @@ function View() {
 			$("#tblList tbody")
 					.append(
 							"<tr> <td>"
-									+ "<img src='icons/edit.png' class='btnEdit'/>"
-									+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
-									+ "<td>" + piso.id + "</td>" + "<td>"
-									+ piso.idagente + "</td>" + "<td>"
-									+ piso.precio + "</td>" + "<td>"
-									+ piso.direccion + "</td>" + "<td>"
-									+ piso.ciudad + "</td>" + "<td>"
-									+ piso.ano + "</td>" + "<td>"
-									+ piso.estado + "</td>" + "<td>"
-									+ piso.foto + "</td></tr>");
+							+ "<label><input type='checkbox' value="+"></label> </td>"
+							+ "<td>" + piso.id + "</td>" + "<td>"
+							+ piso.idagente + "</td>" + "<td>"
+							+ piso.precio + "</td>" + "<td>"
+							+ piso.direccion + "</td>" + "<td>"
+							+ piso.ciudad + "</td>" + "<td>"
+							+ piso.ano + "</td>" + "<td>"
+							+ piso.estado + "</td>" + "<td>"
+							+ piso.foto + "</td></tr>");
 		}
 	}
 
@@ -77,12 +80,14 @@ function View() {
 		// Cogemos el piso nuevo del formulario.
 		var piso = {
 			id : $("#id").val(),
-			idagente : $("#idagente").val(),
+			//Hasta no tener login no se cambia y de asigna todo al agente 1
+			//idagente : $("#idagente").val(),
+			idagente : 1,
 			precio : $("#precio").val(),
 			direccion : $("#direccion").val(),
 			ciudad : $("#ciudad").val(),
 			ano : $("#ano").val(),
-			estado : $("#estado").val(),
+			estado : $('#estado').val(),
 			foto : $("#foto").val()
 		};
 		return piso;
@@ -92,7 +97,6 @@ function View() {
 		// Pintamos los datos Pisos sobre el formularios de alta/edición
 		$("#id").val(piso.id);
 		$("#idagente").val(piso.idagente);
-		$("#nombre").val(piso.nombre);
 		$("#precio").val(piso.precio);
 		$("#direccion").val(piso.direccion);
 		$("#ciudad").val(piso.ciudad);
@@ -187,6 +191,7 @@ function Controller(varmodel, varview) {
 			// editar
 			//console.log("paso");
 			that.view.loadPisoInForm(piso);
+			that.view.list(that.model.tbPisos);
 		});
 	}
 };
