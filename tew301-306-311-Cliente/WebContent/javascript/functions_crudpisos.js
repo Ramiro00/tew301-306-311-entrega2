@@ -2,11 +2,12 @@
 function Model() {
 	// Lista de pisos.
 	this.tbPisos = null;
+	this.tbPisosordenados = null;
 
 	// Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
 	this.load = function() {
 		this.tbPisos = PisosServicesRs.getPisos();
-
+		
 	}
 	// Llamamos al servicio de alta de piso
 	this.add = function(piso) {
@@ -74,6 +75,7 @@ function View() {
 							+ piso.ano + "</td>" + "<td>"
 							+ piso.estado + "</td>" + "<td>"
 							+ piso.foto + "</td></tr>");			
+
 		}
 	}
 
@@ -156,7 +158,7 @@ function Controller(varmodel, varview) {
 		});
 		$("#btnSave").click(function(){
 			var piso = that.view.loadPisoFromForm();
-			//console.log(piso);
+			
 			if ($("#id").val() == "") {
 				that.model.add(piso);
 			} else {
@@ -166,6 +168,66 @@ function Controller(varmodel, varview) {
 			that.view.list(that.model.tbPisos);
 
 		})
+		
+		//Ordenar de menor a mayor
+		$("#btnOrdenar").click(function(){
+			var p = that.model.tbPisos;
+			  var i, j, aux;
+		        for (i = 0; i < p.length - 1; i++) {
+		            for (j = 0; j < p.length - i - 1; j++) {
+		                if (p[j + 1].precio < p[j].precio) {
+		                    aux = p[j + 1]
+		                    p[j + 1] = p[j];
+		                    p[j] = aux;
+		                }
+		            }
+		        }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
+		//Ordenar de mayor a menor
+		$("#btnOrdenar2").click(function(){
+			var p = that.model.tbPisos;
+			  var i, j, aux;
+		        for (i = 0; i < p.length - 1; i++) {
+		            for (j = 0; j < p.length - i - 1; j++) {
+		                if (p[j + 1].precio > p[j].precio) {
+		                    aux = p[j + 1]
+		                    p[j + 1] = p[j];
+		                    p[j] = aux;
+		                }
+		            }
+		        }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
+		//Filtrar por ciudad
+		$("#btnFiltrar").click(function(){
+			var p = that.model.tbPisos;
+			  var i;
+			  var ciudad = $("#ciudad");
+			  if(ciudad.val()==""){
+				  that.model.load();
+			  }
+		        for (i = 0; i < p.length - 1; i++) {
+		            if (p[i].ciudad.includes(ciudad.val()) ){
+		            	
+		            }else{
+		            	p.splice(i);
+		            }
+		        }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
 		
 		// Borrado de un piso en la tabla
 		$("#tblList").on("click", ".btnDelete",
