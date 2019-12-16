@@ -21,64 +21,66 @@
 </head>
 
 <body style="background-color: #ffffff">
+	<header>
+		<h3 class="text-center">ALTA, EDICION DE PISOS</h3>
+	</header>
 	<section>
-		<article>
-			<div class="col-md-7">
-				<h3>Alta o edición de pisos:</h3>
-				<form id="frmCRUDPisos">
-
-					<div class="form-group">
-						<label for="id">ID:</label> <input type="text" id="id"
-							readonly="readonly" class="form-control" />
-					</div>
-					<div class="form-group">
+			<form id="frmCRUDPisos">
+				<div class="form-group">
+					<label for="id">ID:</label> <input type="text" id="id"
+						readonly="readonly" class="form-control" />
+				</div>
+				<!-- Esta sección se desabilita por no disponer de login -->
+				<!-- div class="form-group">
 						<label for="idagente">ID.AGENTE</label> <input type="text"
 							id="idagente" required class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="precio">PRECIO:</label> <input type="text" id="precio"
-							required class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="direccion">DIRECCION:</label> <input type="text"
-							id="direccion" required class="form-control" size="25" />
-					</div>
-					<div class="form-group">
-						<label for="ciudad">CUIDAD:</label> <input type="text" id="ciudad"
-							required class="form-control" size="50" />
-					</div>
-					<div class="form-group">
-						<label for="ano">AÑO:</label> <input type="text" id="ano" required
-							class="form-control" size="50" />
-					</div>
-					<div class="form-group">
-						 <label for="estado"> ESTADO (Seleciona un estado):</label> 
-						 <select class="form-control" id="estado">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="foto">FOTO:</label> 
-<!-- 							<input id="foto" name="imagen" type="file" class ="file-loading"> -->
-					</div>
-					<div class="form-group">
+					</div> -->
+				<div class="form-group">
+					<label for="precio">PRECIO:</label> <input type="text" id="precio"
+						required class="form-control" />
+				</div>
+				<div class="form-group">
+					<label for="direccion">DIRECCION:</label> <input type="text"
+						id="direccion" required class="form-control" size="25" />
+				</div>
+				<div class="form-group">
+					<label for="ciudad">CUIDAD:</label> <input type="text" id="ciudad"
+						required class="form-control" size="50" />
+				</div>
+				<div class="form-group">
+					<label for="ano">AÑO:</label> <input type="text" id="ano" required
+						class="form-control" size="50" />
+				</div>
+				<!-- Se usa el formato select de bootstrap -->
+				<div class="form-group">
+					<label for="estado"> ESTADO (Seleciona un estado):</label> <select
+						class="form-control" id="estado">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="foto">FOTO:</label> <input id="foto" name="imagen"
+						type="file" class="file-loading">
+				</div>
+				<div class="form-group">
 					<input type="button" value="Salvar" id="btnSave" required
 						class="btn btn-default" /> <input type="reset" value="Reset"
 						id="btnReset" required class="btn btn-default" />
-					</div>			
-				</form>
-			</div>
-		</article>
+				</div>
+			</form>
+<!-- 		</div> -->
+	</section>
+	<section>
+		<div class="col-md-2"></div>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">  
+			<div class="col-md-12">
 				<article class="table-responsive">
 					<table class="table table-striped table-responsive" id="tblList">
-					</table> 
+					</table>
 				</article>
 			</div>
 		</div>

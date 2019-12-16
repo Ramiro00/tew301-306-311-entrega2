@@ -25,130 +25,116 @@ Universidad de Oviedo
 </head>
 <body style="background-color: #dfffe1">
 
-    <div class="container">
-        <!-- 
+	<div class="container">
+		<!-- 
 	***************************************************
 	* CABECERA DE LA PAGINA ***************************
 	***************************************************
 	-->
-        <div class="page-header">
-            <h1 class="text-center">
-                <img src="images/logotipo.png"
-                    alt="logotipo inmobiliaria" height="50" /> 
-                    TEW INMOBILIARIA
-            </h1>
-            <!-- 
+		<div class="page-header">
+			<h1 class="text-center">
+				<img src="images/logotipo.png" alt="logotipo inmobiliaria"
+					height="50" /> TEW INMOBILIARIA
+			</h1>
+			<!-- 
 		***************************************************
 		* MENU  DINAMICO **********************************
 		***************************************************
 		-->
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        TEW Inmobiliaria</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown"><a
-                            class="dropdown-toggle"
-                            data-toggle="dropdown" href="#">
-                                Gestión de Pisos<span
-                                class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="crudPisos.html"
-                                    target="formulario">Alta, editar, borrar Piso</a></li>
-                                <li><a
-                                    href="/tew301-306-311-Cliente/import.html"
-                                    target="formulario">
-                                        Importar pisos</a></li>
-                                <li><a
-                                    href="/tew301-306-311-Cliente/listado.html"
-                                    target="formulario">
-                                        Borrado masivo de pisos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link"
-                            href="/tew301-306-311-Cliente/listado.html"
-                            target="formulario">Pisos por cuidad</a></li>
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html"> TEW Inmobiliaria</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"> Gestión de Pisos<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="crudPisos.html" target="formulario">Alta,
+										editar, borrar Piso</a></li>
+								<!--                                 <li><a href="cudGestionPisos.html"
+                                    target="_self">Alta, editar, borrar Piso</a></li> -->
 
-                        <li class="nav-item"><a class="nav-link"
-                            href="/tew301-306-311-Cliente/listado.html"
-                            target="formulario">Pisos por precio</a></li>
+								<li><a href="/tew301-306-311-Cliente/import.html"
+									target="formulario"> Importar pisos</a></li>
+								<li><a href="/tew301-306-311-Cliente/crudBorrar.html"
+									target="formulario"> Borrado masivo de pisos</a></li>
+							</ul></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/tew301-306-311-Cliente/listado.html" target="formulario">
+								Lisado de pisos</a></li>
 
-                        <li class="dropdown"><a
-                            class="dropdown-toggle"
-                            data-toggle="dropdown" href="#">
-                                Base de datos<span class="caret"></span>
-                        </a>
-                            <ul class="dropdown-menu">
-                                <li><a
-                                    href="/tew301-306-311-Cliente/crudDatos.html"
-                                    target="formulario">
-                                        Reiniciar base de datos</a></li>
-                            </ul></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html"
-                            target="formulario"><span
-                                class="glyphicon glyphicon-log-in"></span>
-                                Login</a></li>
-                        <li><a href="login.html"
-                            target="formulario"><span
-                                class="glyphicon glyphicon-log-out"></span>
-                                Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"> Base de datos<span
+								class="caret"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="/tew301-306-311-Cliente/crudDatos.html"
+									target="formulario"> Reiniciar base de datos</a></li>
+							</ul></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="login.html" target="formulario"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						<li><a href="login.html" target="formulario"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
+				</div>
+			</nav>
 
-        </div>
-        <div class="row">
+		</div>
+		
+		<div class="row">
 
-    <!-- 
+			<!-- 
 	***************************************************
 	* SECCION PRINCIPAL DE FORMULARIOS EXTERNOS********
 	***************************************************
 	-->
-            <div class="col-md-12">
-                <object name="formulario" type="text/html"
-                    data="/tew301-306-311-Cliente/marco-inicio.html"
-                    width="100%" height="500px"></object>
-            </div>
-    <!-- 
+			<div class="col-md-9">
+				<object name="formulario" type="text/html"
+					data="/tew301-306-311-Cliente/marco-inicio.html" width="100%"
+					height="600px"></object>
+			</div>
+			<!-- 
 	***************************************************
 	* ELEMENTO LATERAL INFORMATIVO ********************
 	***************************************************
     -->
-<!--             <div class="col-md-3 bg-info">
-                <aside>
-                    <header>
-                        <h2>Inmobiliaria TEW v2.0</h2>
-                    </header>
-                    <p>En este proyecto se incorporan las siguientes
-                        características:
-                    <ol>
-                        <li>CRUD de la entidad pisos</li>
-                        <li>Consumo de servicios Rest para las
-                            operaciones de CRUD anteriores</li>
-                    </ol>
-                </aside>
-            </div> -->
-        </div>
+			<div class="col-md-2 bg-info">
+				<aside>
+					<header>
+						<h2>Inmobiliaria TEW v2.0</h2>
+					</header>
+					<p>Dispone de todas las herramientas para una gestión ágil.
+			
+					<ol>
+						<li>CRUD de la entidad pisos</li>
+						<li>Consumo de servicios Rest para las operaciones de CRUD
+							anteriores</li>
+					</ol>
+				</aside>
+			</div>
+		</div>
 
-    <!-- 
+		<!-- 
     ***************************************************
     * ELEMENTO PIE DE NAVEGACION** ********************
     ***************************************************
     -->
-        <div class="panel panel-default">
-            <div class="panel-footer">
-                <nav>
-                    <ul>
-                        <li><a href="#">Casa</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+		<div class="panel panel-default">
+			<div class="panel-footer">
+				<nav>
+					<ul>
+						<li><a href="index.html">Casa</a></li>
+						<li><a href="#">Contacto</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!--  class="container"> -->
+	</div>
+
 </body>
 </html>

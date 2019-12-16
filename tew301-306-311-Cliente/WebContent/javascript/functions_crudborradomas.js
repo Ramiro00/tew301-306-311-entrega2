@@ -64,8 +64,7 @@ function View() {
 			$("#tblList tbody")
 					.append(
 							"<tr> <td>"
-							+ "<img src='icons/edit.png' class='btnEdit'/>"
-							+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
+							+ "<label><input type='checkbox' value="+"></label> </td>"
 							+ "<td>" + piso.id + "</td>" + "<td>"
 							+ piso.idagente + "</td>" + "<td>"
 							+ piso.precio + "</td>" + "<td>"
@@ -73,7 +72,7 @@ function View() {
 							+ piso.ciudad + "</td>" + "<td>"
 							+ piso.ano + "</td>" + "<td>"
 							+ piso.estado + "</td>" + "<td>"
-							+ piso.foto + "</td></tr>");			
+							+ piso.foto + "</td></tr>");
 		}
 	}
 
