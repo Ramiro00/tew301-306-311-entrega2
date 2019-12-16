@@ -164,13 +164,18 @@ function Controller(varmodel, varview) {
 		})
 		
 		$("#btnOrdenar").click(function(){
-			var piso = that.view.loadPisoFromForm();
-			//console.log(piso);
-			if ($("#id").val() == "") {
-				that.model.add(piso);
-			} else {
-				that.model.edit(piso);
-			}
+			var p = that.model.tbPisos;
+			  var i, j, aux;
+		        for (i = 0; i < p.length - 1; i++) {
+		            for (j = 0; j < p.length - i - 1; j++) {
+		                if (p[j + 1].precio < p[j].precio) {
+		                    aux = p[j + 1]
+		                    p[j + 1] = p[j];
+		                    p[j] = aux;
+		                }
+		            }
+		        }
+			
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
