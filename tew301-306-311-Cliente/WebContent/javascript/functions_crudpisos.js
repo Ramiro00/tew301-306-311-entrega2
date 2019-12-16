@@ -204,11 +204,16 @@ function Controller(varmodel, varview) {
 		//Filtrar por ciudad
 		$("#btnFiltrar").click(function(){
 			var p = that.model.tbPisos;
-			  var i, j, aux;
+			  var i;
 			  var ciudad = $("#ciudad");
+			  if(ciudad.val()==""){
+				  that.model.load();
+			  }
 		        for (i = 0; i < p.length - 1; i++) {
-		            if (p[i].ciudad.contains(ciudad)){
-		            	alert("Ciudad encontrada!");
+		            if (p[i].ciudad.includes(ciudad.val()) ){
+		            	
+		            }else{
+		            	p.splice(i);
 		            }
 		        }
 			
