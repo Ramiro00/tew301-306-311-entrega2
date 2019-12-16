@@ -6,6 +6,7 @@ import java.util.Set;
 
 import impl.tew.business.resteasy.PisosServicesRsImpl;
 import impl.tew.business.resteasy.DatosServicesRsImpl;
+import impl.tew.business.resteasy.LoginServicesRsImpl;
 
 @SuppressWarnings("unchecked")
 public class Application extends javax.ws.rs.core.Application {
@@ -15,6 +16,7 @@ public class Application extends javax.ws.rs.core.Application {
 	public Application() {
 		classes.add(PisosServicesRsImpl.class);
 		classes.add(DatosServicesRsImpl.class);
+		classes.add(LoginServicesRsImpl.class);
 	}
 
 	@Override

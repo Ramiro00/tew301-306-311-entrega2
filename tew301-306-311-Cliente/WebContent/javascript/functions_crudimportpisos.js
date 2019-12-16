@@ -26,7 +26,7 @@ function Model(){
 			$contentType : "application/json"	
 		});
 	}
-	
+
 	this.find = function(id_piso) {
 		function checkpiso(obj) {
 			return obj.id == id_piso;
@@ -38,22 +38,67 @@ function Model(){
 	} 
 };
 
-function Controller(varmodel) {
+function View() {
+	this.getPath = function() {
+	}
+}
+
+function Controller(varmodel, varview) {
 	// Definimos una copia de this para evitar el conflicto con el this (del
 	// objeto que recibe el evento)
 	// en los manejadores de eventos
 	var that = this;
 	// referencia al modelo
 	this.model = varmodel;
+
+	this.view = varview;
 	// Funcion de inicialización para cargar modelo y vista, definición de manejadores
 	this.init = function() {
 		// MANEJADORES DE EVENTOS
 		this.model.load();
 
-		$("#formimportar").bind("submit", function(event) {
+		$("#formimportarlocal").bind("submit", function(event) {
+			var file = document.getElementById('inputGroupFile01').files[0];
+		       var reader = new FileReader();
+		       reader.readAsText(file);
+		       reader.onload = function(e) {
+		            // browser completed reading file - display it
+		            alert(e.target.result);
+		        };
+			$.getJSON(filename, function(json) {
+			    console.log(json); // this will show the info it in firebug console
+			});
 			// Método que gestiona el evento de clickar el botón submit del
 			// formulario
-			alert("Que empieza");
+			/*var filname = $("#inputGroupFile01").val();
+			var fileContent = getTxt();
+			var jsonData = JSON.parse(fileContent);
+			alert("Recibida respuesta con exito!");
+			//Para acceder a los datos de los pisos se puede recorrer así
+			for ( var i in pisos) {//Preparamos el registro de un piso
+				var piso = ({
+					id : pisos[i].ID,
+					idagente: 1,
+					precio : pisos[i].Precio,
+					direccion: pisos[i].Direccion,
+					ciudad: pisos[i].Ciudad,
+					ano: pisos[i].Anyo,
+					estado: pisos[i].Estado,
+					foto: pisos[i].Foto
+				});
+
+//				Buscamos los datos del piso cuyo id_piso sea el mismo que el
+//				seleccionado
+				if(that.model.find(piso.ID)!= null){
+					that.model.edit(piso);
+				}
+				else that.model.add(piso);
+			} */
+		});
+
+		$("#formimportarservidor").bind("submit", function(event) {
+			// Método que gestiona el evento de clickar el botón submit del
+			// formulario
 			$.ajax({
 				url : "http://localhost:8080/tew301-306-311-Servicios/pisos.json",
 				type : "GET",
@@ -90,9 +135,10 @@ function Controller(varmodel) {
 $(function() {
 	// Creamos el modelo con los datos y la conexión al servicio web.
 	var model = new Model();
-	// Creamos la vista que incluye acceso al modelo. 
+	// Creamos la vista que incluye acceso al modelo.
+	var view = new View();
 	// Creamos el controlador
-	var control = new Controller(model);
+	var control = new Controller(model, view);
 	// Iniciamos la aplicación
 	control.init();
 }); 

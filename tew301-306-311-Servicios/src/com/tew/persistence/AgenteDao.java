@@ -12,5 +12,6 @@ public interface AgenteDao {
 	void save(Agente a) throws AlreadyPersistedException, SQLIntegrityConstraintViolationException;
 	Agente findByLogin(String login);
 	void deleteAll();
+	List<Agente> getAgentes();
 	
 }

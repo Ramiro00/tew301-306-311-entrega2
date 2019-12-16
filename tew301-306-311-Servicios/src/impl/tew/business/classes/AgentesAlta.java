@@ -20,18 +20,12 @@ public class AgentesAlta {
 		AgenteDao dao = Factories.persistence.createAgenteDao();
 
 		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-256");
-			byte[] hash = digest.digest(agente.getPassword().getBytes(StandardCharsets.UTF_8));
-
-	        agente.setPassword(new String(Base64.getEncoder().encode(hash)));
 			dao.save(agente);
 		}
 		catch (AlreadyPersistedException ex) {
 			throw new EntityAlreadyExistsException("Agente ya existe " + agente, ex);
 		} catch (SQLIntegrityConstraintViolationException e) {
 			throw new EntityAlreadyExistsException("Correo ya en uso" + agente, e);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 		}
 	}
 }

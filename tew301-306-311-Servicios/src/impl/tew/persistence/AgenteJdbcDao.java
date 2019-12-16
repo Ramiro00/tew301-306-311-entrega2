@@ -6,13 +6,72 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.tew.model.Agente;
+import com.tew.model.Piso;
 import com.tew.persistence.AgenteDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
 import com.tew.persistence.exception.PersistenceException;
 
 public class AgenteJdbcDao implements AgenteDao{
+	
+	public List<Agente> getAgentes() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		List<Agente> agentes = new ArrayList<Agente>();
+
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("select * from AGENTES");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Agente agente = new Agente();
+				agente.setID(rs.getInt("ID"));
+				agente.setLogin(rs.getString("LOGIN"));
+				agente.setPassword(rs.getString("PASSWD"));
+				agentes.add(agente);
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		return agentes;
+	}
 	
 	@Override
 	public Agente findByLogin(String login) {
