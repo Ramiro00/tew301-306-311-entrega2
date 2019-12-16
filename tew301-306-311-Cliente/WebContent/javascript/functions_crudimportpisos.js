@@ -73,7 +73,7 @@ function Controller(varmodel, varview) {
 					for ( var i in pisos) {//Preparamos el registro de un piso
 						var piso = ({
 							id : pisos[i].ID,
-							idagente: sessionStorage.getItem('ID'),
+							idagente: 1,
 							precio : pisos[i].Precio,
 							direccion: pisos[i].Direccion,
 							ciudad: pisos[i].Ciudad,
