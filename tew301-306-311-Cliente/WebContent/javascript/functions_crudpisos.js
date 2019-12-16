@@ -55,7 +55,7 @@ function View() {
 		$("#tblList").html("");
 		$("#tblList").html(
 				"<thead>" + "<tr>" + "<th></th>" + "<th>ID</th>"
-						+ "<th>ID.AGENTE</th>" + "<th>PRECIO</th>"
+						+ "<th>PRECIO</th>"
 						+ "<th>DIRECCION</th>" + "<th>CIUDAD</th>" 
 						+ "<th>AÑO</th>" + "<th>ESTADO</th>"
 						+ "<th>FOTO</th>" + "</tr>"
@@ -68,7 +68,6 @@ function View() {
 							+ "<img src='icons/edit.png' class='btnEdit'/>"
 							+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
 							+ "<td>" + piso.id + "</td>" + "<td>"
-							+ piso.idagente + "</td>" + "<td>"
 							+ piso.precio + "</td>" + "<td>"
 							+ piso.direccion + "</td>" + "<td>"
 							+ piso.ciudad + "</td>" + "<td>"
