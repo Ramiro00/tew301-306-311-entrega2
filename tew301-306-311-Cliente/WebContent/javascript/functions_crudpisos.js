@@ -7,7 +7,7 @@ function Model() {
 	// Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
 	this.load = function() {
 		this.tbPisos = PisosServicesRs.getPisos();
-		
+
 	}
 	// Llamamos al servicio de alta de piso
 	this.add = function(piso) {
@@ -43,37 +43,37 @@ function Model() {
 		var piso = this.tbPisos.find(checkPiso);
 		return piso;
 	}
-/*    String nombre = file.getOriginalFilename();
+	/*    String nombre = file.getOriginalFilename();
     String tipo   = file.getContentType();
     Long tamano   = file.getSize();
     byte[] pixel  = file.getBytes();*/
 };
 
-// Clase que contiene la gestión de la capa Vista
+//Clase que contiene la gestión de la capa Vista
 function View() {
 	this.list = function(lista) {
 		$("#tblList").html("");
 		$("#tblList").html(
 				"<thead>" + "<tr>" + "<th></th>" + "<th>ID</th>"
-						+ "<th>PRECIO</th>"
-						+ "<th>DIRECCION</th>" + "<th>CIUDAD</th>" 
-						+ "<th>AÑO</th>" + "<th>ESTADO</th>"
-						+ "<th>FOTO</th>" + "</tr>"
-						+ "</thead>" + "<tbody>" + "</tbody>");
+				+ "<th>PRECIO</th>"
+				+ "<th>DIRECCION</th>" + "<th>CIUDAD</th>" 
+				+ "<th>AÑO</th>" + "<th>ESTADO</th>"
+				+ "<th>FOTO</th>" + "</tr>"
+				+ "</thead>" + "<tbody>" + "</tbody>");
 		for ( var i in lista) {
 			var piso = lista[i];
 			$("#tblList tbody")
-					.append(
-							"<tr> <td>"
-							+ "<img src='icons/edit.png' class='btnEdit'/>"
-							+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
-							+ "<td>" + piso.id + "</td>" + "<td>"
-							+ piso.precio + "</td>" + "<td>"
-							+ piso.direccion + "</td>" + "<td>"
-							+ piso.ciudad + "</td>" + "<td>"
-							+ piso.ano + "</td>" + "<td>"
-							+ piso.estado + "</td>" + "<td>"
-							+ piso.foto + "</td></tr>");			
+			.append(
+					"<tr> <td>"
+					+ "<img src='icons/edit.png' class='btnEdit'/>"
+					+ "<img src='icons/delete.png' class='btnDelete'/> </td>"
+					+ "<td>" + piso.id + "</td>" + "<td>"
+					+ piso.precio + "</td>" + "<td>"
+					+ piso.direccion + "</td>" + "<td>"
+					+ piso.ciudad + "</td>" + "<td>"
+					+ piso.ano + "</td>" + "<td>"
+					+ piso.estado + "</td>" + "<td>"
+					+ piso.foto + "</td></tr>");			
 
 		}
 	}
@@ -81,16 +81,16 @@ function View() {
 	this.loadPisoFromForm = function() {
 		// Cogemos el piso nuevo del formulario.
 		var piso = {
-			id : $("#id").val(),
-			//Hasta no tener login no se cambia y de asigna todo al agente 1
-			//idagente : $("#idagente").val(),
-			idagente : 1,
-			precio : $("#precio").val(),
-			direccion : $("#direccion").val(),
-			ciudad : $("#ciudad").val(),
-			ano : $("#ano").val(),
-			estado : $('#estado').val(),
-			foto : $("#foto").val()
+				id : $("#id").val(),
+				//Hasta no tener login no se cambia y de asigna todo al agente 1
+				//idagente : $("#idagente").val(),
+				idagente : 1,
+				precio : $("#precio").val(),
+				direccion : $("#direccion").val(),
+				ciudad : $("#ciudad").val(),
+				ano : $("#ano").val(),
+				estado : $('#estado').val(),
+				foto : $("#foto").val()
 		};
 		return piso;
 	}
@@ -140,9 +140,9 @@ function Controller(varmodel, varview) {
 
 		// Manejador del botón submit del formulario de Alta y Edición
 		$("#frmCRUDPisos").bind("submit",
-		// Método que gestiona el evento de clickar el botón submit del
-		// formulario
-		function(event) {
+				// Método que gestiona el evento de clickar el botón submit del
+				// formulario
+				function(event) {
 			// Si el piso cargado en el formulario tiene ID se invoca al
 			// método de edición sino se invoca al método de alta.
 			var piso = that.view.loadPisoFromForm();
@@ -153,11 +153,10 @@ function Controller(varmodel, varview) {
 			}
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
-			
 		});
 		$("#btnSave").click(function(){
 			var piso = that.view.loadPisoFromForm();
-			
+
 			if ($("#id").val() == "") {
 				that.model.add(piso);
 			} else {
@@ -166,111 +165,108 @@ function Controller(varmodel, varview) {
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
+		});
+
 		//Ordenar de menor a mayor
 		$("#btnOrdenar").click(function(){
 			var p = that.model.tbPisos;
-			  var i, j, aux;
-		        for (i = 0; i < p.length - 1; i++) {
-		            for (j = 0; j < p.length - i - 1; j++) {
-		                if (p[j + 1].precio < p[j].precio) {
-		                    aux = p[j + 1]
-		                    p[j + 1] = p[j];
-		                    p[j] = aux;
-		                }
-		            }
-		        }
-			
+			var i, j, aux;
+			for (i = 0; i < p.length - 1; i++) {
+				for (j = 0; j < p.length - i - 1; j++) {
+					if (p[j + 1].precio < p[j].precio) {
+						aux = p[j + 1]
+						p[j + 1] = p[j];
+						p[j] = aux;
+					}
+				}
+			}
+
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
+		});
+
 		//Ordenar de mayor a menor
 		$("#btnOrdenar2").click(function(){
 			var p = that.model.tbPisos;
-			  var i, j, aux;
-		        for (i = 0; i < p.length - 1; i++) {
-		            for (j = 0; j < p.length - i - 1; j++) {
-		                if (p[j + 1].precio > p[j].precio) {
-		                    aux = p[j + 1]
-		                    p[j + 1] = p[j];
-		                    p[j] = aux;
-		                }
-		            }
-		        }
-			
+			var i, j, aux;
+			for (i = 0; i < p.length - 1; i++) {
+				for (j = 0; j < p.length - i - 1; j++) {
+					if (p[j + 1].precio > p[j].precio) {
+						aux = p[j + 1]
+						p[j + 1] = p[j];
+						p[j] = aux;
+					}
+				}
+			}
+
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
+		});
+
 		//Filtrar por ciudad
 		$("#btnFiltrar").click(function(){
 			var p = that.model.tbPisos;
-			  var i;
-			  var ciudad = $("#ciudad");
-			  if(ciudad.val()==""){
-				  that.model.load();
-			  }
-		        for (i = 0; i < p.length - 1; i++) {
-		            if (p[i].ciudad.includes(ciudad.val()) ){
-		            	
-		            }else{
-		            	p.splice(i);
-		            }
-		        }
-			
+			var i;
+			var ciudad = $("#ciudad");
+			if(ciudad.val()==""){
+				that.model.load();
+			}
+			for (i = 0; i < p.length - 1; i++) {
+				if (p[i].ciudad.includes(ciudad.val()) ){
+
+				}else{
+					p.splice(i);
+				}
+			}
+
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
+		});
+
 		//Filtrar por estado
 		$("#btnFiltrarEstado").click(function(){
-			var p = that.model.tbPisos;
-			  var i;
-			  var state = $("#estado");
-			  if(estado.val()==""){
-				  that.model.load();
-			  }
-			  
-		      for (i = 0; i < p.length - 1; i++) {
-		          if (p[i].estado != state.val()){
-						p.splice(i);	
-					}
-		      }
-			
+			that.model.load();
+			var pisos = that.model.tbPisos;
+			var i;
+			var state = $("#estado");
+			for (var p in pisos) {
+				if (pisos[p].estado != state.val()){
+					pisos.splice(p);
+				}
+			}
+
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
+		});
+
 		$("#btnFiltrarDescuento").click(function(){
 			var p = that.model.tbPisos;
-			  var i;
-			  var descuento = $("#descuento");
-			  if(descuento==""){
-				  that.model.load();
-			  }
-			  
-		      for (i = 0; i < p.length - 1; i++) {
-		          
-		    	  p[i].precio = p[i]- (p[i]*descuento); 
-		    	  p.edit(p[i]);
-		      }
-			
+			var i;
+			var descuento = $("#descuento");
+			if(descuento==""){
+				that.model.load();
+			}
+
+			for (i = 0; i < p.length - 1; i++) {
+
+				p[i].precio = p[i]- (p[i]*descuento); 
+				p.edit(p[i]);
+			}
+
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
-		})
-		
-		
+		});
+
+
 		// Borrado de un piso en la tabla
 		$("#tblList").on("click", ".btnDelete",
-		// Método que gestiona el evento de clickar en el evento
-		function(event) {
+				// Método que gestiona el evento de clickar en el evento
+				function(event) {
 			// Obtenemos el id del piso seleccionado mediante el icono de
 			// edición
 			var id = that.view.getIdPiso($(this));
@@ -278,11 +274,11 @@ function Controller(varmodel, varview) {
 			that.model.remove(id);
 			that.view.list(that.model.tbPisos);
 		});
-		
+
 		// Edición de un piso en la tabla
 		$("#tblList").on("click", ".btnEdit",
-		// Método que gestiona el evento de clickar en el evento
-		function(event) {
+				// Método que gestiona el evento de clickar en el evento
+				function(event) {
 			// Obtenemos el id del piso seleccionado mediante el icono de
 			// edición
 			var id = that.view.getIdPiso($(this));
