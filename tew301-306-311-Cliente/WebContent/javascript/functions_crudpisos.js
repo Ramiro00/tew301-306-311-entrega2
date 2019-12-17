@@ -3,7 +3,7 @@ function Model() {
 	// Lista de pisos.
 	this.tbPisos = null;
 	this.tbPisosordenados = null;
-
+	this.tbPisosfiltrados = null;
 	// Carga los datos del servicio sobreescribiendo el dato this.tbPisos.
 	this.load = function() {
 		this.tbPisos = PisosServicesRs.getPisos();
@@ -230,21 +230,23 @@ function Controller(varmodel, varview) {
 		$("#btnFiltrarEstado").click(function(){
 			that.model.load();
 			var pisos = that.model.tbPisos;
-			var i;
 			var state = $("#estado");
+			var pisosfiltrado = [];
 			for (var p in pisos) {
-				if (pisos[p].estado != state.val()){
-					pisos.splice(p);
+				if (pisos[p].estado == state.val()){
+					pisosfiltrado.push(pisos[p]);
 				}
 			}
-
+			
+			that.model.tbPisosfiltrados = pisosfiltrado;
+			
 			// Refrescar listado Pisos
-			that.view.list(that.model.tbPisos);
+			that.view.list(that.model.tbPisosfiltrados);
 
 		});
 
 		$("#btnAplicarDescuento").click(function(){
-			var pisos = that.model.tbPisos;
+			var pisos = that.model.tbPisosfiltrados;
 			var i;
 			var descuento = $("#descuento");
 
@@ -253,8 +255,9 @@ function Controller(varmodel, varview) {
 				that.model.edit(pisos[i]);
 			}
 			that.model.load();
+			that.model.tbPisosfiltrados = pisos;
 			// Refrescar listado Pisos
-			that.view.list(that.model.tbPisos);
+			that.view.list(that.model.tbPisosfiltrados);
 
 		});
 
