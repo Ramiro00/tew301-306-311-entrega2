@@ -227,6 +227,45 @@ function Controller(varmodel, varview) {
 
 		})
 		
+		//Filtrar por estado
+		$("#btnFiltrarEstado").click(function(){
+			var p = that.model.tbPisos;
+			  var i;
+			  var state = $("#estado");
+			  if(estado.val()==""){
+				  that.model.load();
+			  }
+			  
+		      for (i = 0; i < p.length - 1; i++) {
+		          if (p[i].estado != state.val()){
+						p.splice(i);	
+					}
+		      }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
+		$("#btnFiltrarDescuento").click(function(){
+			var p = that.model.tbPisos;
+			  var i;
+			  var descuento = $("#descuento");
+			  if(descuento==""){
+				  that.model.load();
+			  }
+			  
+		      for (i = 0; i < p.length - 1; i++) {
+		          
+		    	  p[i].precio = p[i]- (p[i]*descuento); 
+		    	  p.edit(p[i]);
+		      }
+			
+			// Refrescar listado Pisos
+			that.view.list(that.model.tbPisos);
+
+		})
+		
 		
 		// Borrado de un piso en la tabla
 		$("#tblList").on("click", ".btnDelete",
