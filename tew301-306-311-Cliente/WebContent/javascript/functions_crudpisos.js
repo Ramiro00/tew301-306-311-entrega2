@@ -243,20 +243,16 @@ function Controller(varmodel, varview) {
 
 		});
 
-		$("#btnFiltrarDescuento").click(function(){
-			var p = that.model.tbPisos;
+		$("#btnAplicarDescuento").click(function(){
+			var pisos = that.model.tbPisos;
 			var i;
 			var descuento = $("#descuento");
-			if(descuento==""){
-				that.model.load();
+
+			for ( var i in pisos){
+				pisos[i].precio = pisos[i].precio - (0.01* descuento.val() * pisos[i].precio);
+				that.model.edit(pisos[i]);
 			}
-
-			for (i = 0; i < p.length - 1; i++) {
-
-				p[i].precio = p[i]- (p[i]*descuento); 
-				p.edit(p[i]);
-			}
-
+			that.model.load();
 			// Refrescar listado Pisos
 			that.view.list(that.model.tbPisos);
 
