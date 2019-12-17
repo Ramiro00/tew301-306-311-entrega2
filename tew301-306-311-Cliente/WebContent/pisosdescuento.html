@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Crud PISOS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" href="icons/favicon.ico">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<script src="jquery/Jquery-1.11.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript"
+	src="http://localhost:8080/tew301-306-311-Servicios/rest-jsapi">
+	
+</script>
+<script type="text/javascript" src="javascript/functions_crudpisos.js"></script>
+</head>
+
+<body style="background-color: #ffffff">
+	<section>
+
+		<div class="col-md-2"></div>
+		<div class="col-md-12">
+			<div class="row">
+				<div class="form-group">
+					<label for="estado"> ESTADO (Seleciona un estado):</label> <select
+						class="form-control" id="estado">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<input type="button" value="Filtrar" id="btnFiltrarEstado" required
+					class="btn btn-default" /> <br> <label for="descuento">Introduce
+					el descuento a aplicar:</label> <input type="number" id="descuento" size="10"
+					value=0 min="0" max="100"/>
+					<input type="button" value="Aplicar Descuento" id="btnAplicarDescuento" required
+					class="btn btn-default" />
+				<article class="table-responsive">
+					<table class="table table-striped table-responsive" id="tblList">
+					</table>
+				</article>
+			</div>
+		</div>
+	</section>
